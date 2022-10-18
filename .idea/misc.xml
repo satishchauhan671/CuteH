@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/outline_gray.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/outline_white_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/round_blue_gradient_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/bottom_nav_color.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/camera_img_background.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_add.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_arrow_white.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_camera.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_logout.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_menu.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/outline_white_gb.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/round_gray_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/round_theme_gradient_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/rounded_dark_blue_outline_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/toggle_widget_background.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_login.xml" value="0.22395833333333334" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/app_bar_home.xml" value="0.23697916666666666" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/content_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_add_or_edit_hotel.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_add_or_edit_institute.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_dashboard.xml" value="0.177734375" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_hotel.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_institute.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/ic_logout.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_bottom_navigation.xml" value="0.23697916666666666" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_dialog_h.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_toolbar_white_bg.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/nav_header_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/menu/activity_main_drawer.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/menu/bottom_menu.xml" value="0.23802083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

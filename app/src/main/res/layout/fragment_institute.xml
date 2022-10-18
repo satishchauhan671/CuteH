@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include android:id="@+id/white_toolbar"
+        layout="@layout/layout_toolbar_white_bg"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data_found"
+            android:textColor="@color/dark_blue"
+            android:fontFamily="@font/robo_bold"
+            android:textSize="@dimen/text_size_22sp"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hotel_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/card_add_hotel"
+        android:layout_below="@id/white_toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_add_hotel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/activity_margin_15dp"
+        app:cardCornerRadius="@dimen/activity_margin_20dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="@dimen/activity_margin_5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_margin_15dp"
+            android:paddingTop="@dimen/activity_margin_10dp"
+            android:paddingRight="@dimen/activity_margin_15dp"
+            android:paddingBottom="@dimen/activity_margin_10dp">
+
+
+            <ImageView
+                android:layout_width="@dimen/activity_margin_20dp"
+                android:layout_height="@dimen/activity_margin_20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/activity_margin_5dp"
+                android:src="@drawable/ic_add" />
+
+
+            <TextView
+                android:id="@+id/txt_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/robo_regular"
+                android:text="@string/add_institute"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_14sp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
