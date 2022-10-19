@@ -8,33 +8,51 @@
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/outline_white_bg.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable-v24/round_blue_gradient_bg.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/bottom_nav_color.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/btn_green.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/btn_theme.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/camera_img_background.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_add.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_arrow_white.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_camera.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_flash_auto.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_gallery.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_gallery_camera.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_logout.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_menu.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_rotate.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_shutter.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/ic_shutter_focused.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/outline_white_gb.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/rate_star.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/round_gray_bg.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/round_theme_gradient_bg.xml" value="0.1715" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/rounded_dark_blue_outline_bg.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/drawable/shape_rectangle.xml" value="0.1095" />
         <entry key="..\:/Android/CuteH/app/src/main/res/drawable/toggle_widget_background.xml" value="0.1715" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_camera.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_dashboard.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_login.xml" value="0.22395833333333334" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
-        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/app_bar_home.xml" value="0.23697916666666666" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/camera_ui_container.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/content_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_add_hotel.xml" value="0.1" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_add_or_edit_hotel.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_add_or_edit_institute.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_camera.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_dashboard.xml" value="0.177734375" />
-        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_hotel.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_hotel.xml" value="0.22774869109947643" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/fragment_institute.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/gallery_bottom_sheet.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/ic_logout.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_bottom_navigation.xml" value="0.23697916666666666" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_dialog_h.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/layout_toolbar_white_bg.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/layout/nav_header_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/row_hotel.xml" value="0.23697916666666666" />
+        <entry key="..\:/Android/CuteH/app/src/main/res/layout/row_institute.xml" value="0.264" />
         <entry key="..\:/Android/CuteH/app/src/main/res/menu/activity_main_drawer.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/CuteH/app/src/main/res/menu/bottom_menu.xml" value="0.23802083333333332" />
       </map>

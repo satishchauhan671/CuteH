@@ -140,6 +140,7 @@ class HotelDataSource private constructor() {
             DatabaseHelper.WINE_BEER_AVAILABLE,
             DatabaseHelper.BOOK_NOW,
             DatabaseHelper.FEEDBACK,
+            DatabaseHelper.PRICE,
             DatabaseHelper.LATITUDE,
             DatabaseHelper.LONGITUDE,
         )
@@ -153,7 +154,7 @@ class HotelDataSource private constructor() {
         hotelModel.BUSINESS_NAME = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.BUSINESS_NAME))
         hotelModel.ADDRESS = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.ADDRESS))
         hotelModel.MOBILE_NO = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.MOBILE_NO))
-        hotelModel.ROOMS = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.ROOMS))
+        hotelModel.ROOMS = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.ROOMS))
         hotelModel.IMAGE_PATH = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.IMAGE_PATH))
         hotelModel.RATE = cursor.getString(cursor.getColumnIndex(DatabaseHelper.RATE))
         hotelModel.DINE_TABLE = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.DINE_TABLE))
@@ -162,6 +163,7 @@ class HotelDataSource private constructor() {
         hotelModel.WINE_BEER_AVAILABLE = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.WINE_BEER_AVAILABLE))
         hotelModel.BOOK_NOW = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.BOOK_NOW))
         hotelModel.FEEDBACK = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.FEEDBACK))
+        hotelModel.PRICE = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.PRICE))
         hotelModel.LATITUDE = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.LATITUDE))
         hotelModel.LONGITUDE = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.LONGITUDE))
         return hotelModel

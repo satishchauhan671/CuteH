@@ -1310,7 +1310,7 @@ object Utility {
         try {
             val dir = File(
                 Environment.getExternalStorageDirectory()
-                    .toString() + "/Android/media/com.inventive.ugobill/" + context.resources.getString(
+                    .toString() + "/Android/media/com.digipanther.cuteH/" + context.resources.getString(
                     R.string.app_name
                 )
             )

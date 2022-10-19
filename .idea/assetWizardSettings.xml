@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/C:/Users/Dell/AppData/Local/Android/Sdk/icons/material/materialicons/liquor/baseline_liquor_24.xml" />
+                                      <entry key="url" value="file:/C:/Users/Dell/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/star_purple500/outline_star_purple500_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="0a2c4f" />
-                            <entry key="outputName" value="ic_liquor_selected" />
+                            <entry key="color" value="ffab40" />
+                            <entry key="outputName" value="rate_star" />
                             <entry key="sourceFile" value="G:\Android\CuteH" />
                           </map>
                         </option>

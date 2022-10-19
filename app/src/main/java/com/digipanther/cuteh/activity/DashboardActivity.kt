@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -21,9 +22,10 @@ import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.bumptech.glide.request.RequestOptions
 import com.digipanther.cuteh.R
 import com.digipanther.cuteh.common.Utility
-import com.digipanther.cuteh.databinding.ActivityMainBinding
+import com.digipanther.cuteh.databinding.ActivityDashboardBinding
 import com.digipanther.cuteh.dbHelper.UserDataHelper
 import com.digipanther.cuteh.fragment.DashboardFragment
+import com.digipanther.cuteh.fragment.HotelFragment
 import com.digipanther.cuteh.model.UserInfoModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -31,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 
 class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var dashboardBinding: ActivityMainBinding
+    private lateinit var dashboardBinding: ActivityDashboardBinding
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navigationView: NavigationView
     private var mActivity: Activity? = null
@@ -41,7 +43,8 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
     override fun onCreate(savedInstanceState: Bundle?) {
        // this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         super.onCreate(savedInstanceState)
-       setContentView(R.layout.activity_main)
+        dashboardBinding = DataBindingUtil.setContentView(this,R.layout.activity_dashboard)
+        dashboardBinding.appBarHome.toolbar.visibility = View.VISIBLE
         mActivity = this@DashboardActivity
         setSupportActionBar(dashboardBinding.appBarHome.toolbar)
         bottomNavigationView = dashboardBinding.appBarHome.contentMain.bottomNavigation
@@ -104,6 +107,17 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                     fragment = DashboardFragment(dashboardBinding)
                     navigationView.menu
                     navigationView.menu.findItem(R.id.navigation_dashboard).isChecked = true
+                    Utility.addFragment(
+                        fragment,
+                        supportFragmentManager,
+                        R.id.layout_fragment
+                    )
+                }
+
+                R.id.nav_hotel -> {
+                    actionBar!!.title = "Hotel"
+                    fragment = HotelFragment(dashboardBinding)
+                    navigationView.menu.findItem(R.id.navigation_hotel).isChecked = true
                     Utility.replaceFragment(
                         fragment,
                         supportFragmentManager,
@@ -111,19 +125,7 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                     )
                 }
 
-                R.id.nav_ci -> {
-                    Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT)
-                        .show()
-                   /*  fragment = SearchCustomerCIFragment(dashboardBinding)
-                     navigationView.menu.findItem(R.id.navigation_ci).isChecked = true
-                     Utility.replaceFragment(
-                         fragment,
-                         supportFragmentManager,
-                         R.id.layout_fragment
-                     )*/
-                }
-
-                R.id.nav_mi -> {
+                R.id.nav_institute -> {
                     actionBar!!.title = "Meter Indexing"
                     actionBar!!.subtitle = ""
                   /*  fragment = SearchCustomerMIFragment(dashboardBinding)
@@ -153,7 +155,7 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
 
 
         val fragment = DashboardFragment(dashboardBinding)
-        Utility.replaceFragment(fragment, supportFragmentManager, R.id.layout_fragment)
+        Utility.addFragment(fragment, supportFragmentManager, R.id.layout_fragment)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -188,15 +190,14 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
             }
 
             R.id.navigation_hotel -> {
-                actionBar!!.title = "Meter Indexing"
-                actionBar!!.subtitle = ""
-                /*fragment = SearchCustomerMIFragment(dashboardBinding)
-                navigationView.menu.findItem(R.id.navigation_mi).isChecked = true
-                Utility.replaceFragment(
+                actionBar!!.title = "Hotel"
+                fragment = HotelFragment(dashboardBinding)
+                navigationView.menu.findItem(R.id.navigation_hotel).isChecked = true
+                Utility.addFragment(
                     fragment,
                     supportFragmentManager,
                     R.id.layout_fragment
-                )*/
+                )
             }
 
             R.id.navigation_profile -> {

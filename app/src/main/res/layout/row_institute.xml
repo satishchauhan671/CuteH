@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/lay_height_120dp"
+    android:layout_margin="@dimen/activity_margin_10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/card_radius_10dp"
+        app:cardElevation="@dimen/activity_margin_5dp">
+
+        <RelativeLayout
+            android:id="@+id/backgroundRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha=".8"
+            android:background="@drawable/institute_bg"
+            android:padding="@dimen/activity_margin_10dp">
+
+
+        <LinearLayout
+            android:layout_toStartOf="@+id/ratingLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/instituteNameTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dayanand University"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_size_14sp"
+                android:fontFamily="@font/robo_bold"
+                android:layout_marginBottom="@dimen/activity_margin_3dp"/>
+
+            <TextView
+                android:id="@+id/instituteMobileTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9999395079"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/robo_medium"
+                android:layout_marginBottom="@dimen/activity_margin_3dp"/>
+
+            <TextView
+                android:id="@+id/instituteAddressTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Main Jaipur Road, 100ft Road, 201005"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/robo_medium"
+                android:layout_marginBottom="@dimen/activity_margin_10dp"/>
+
+            <TextView
+                android:id="@+id/courseFeeTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green"
+                android:text="Rs. 20,0000/Year"
+                android:textColor="@color/white"
+                android:fontFamily="@font/robo_medium"
+                android:textSize="@dimen/text_size_12sp"
+                android:paddingStart="@dimen/activity_margin_10dp"
+                android:paddingEnd="@dimen/activity_margin_10dp"
+                android:paddingTop="@dimen/activity_margin_5dp"
+                android:paddingBottom="@dimen/activity_margin_5dp"
+                android:layout_gravity="end"/>
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ratingLay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/activity_margin_25dp"
+                    android:layout_height="@dimen/activity_margin_25dp"
+                    android:src="@drawable/graduate_img"
+                    android:layout_marginEnd="@dimen/activity_margin_5dp"/>
+
+                <TextView
+                    android:id="@+id/courseNameTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12sp"
+                    android:text="MCA"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

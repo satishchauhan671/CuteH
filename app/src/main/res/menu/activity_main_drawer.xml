@@ -7,13 +7,13 @@
 
         <item
             android:id="@+id/navigation_dashboard"
-            android:icon="@drawable/hotel"
+            android:icon="@drawable/dashboard_img"
             android:title="@string/dashboard" />
 
 
         <item
             android:id="@+id/navigation_profile"
-            android:icon="@drawable/hotel"
+            android:icon="@drawable/profile_img"
             android:iconTint="@color/black"
             android:title="@string/profile" />
 

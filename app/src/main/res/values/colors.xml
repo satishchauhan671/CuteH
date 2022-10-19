@@ -2,17 +2,17 @@
 <resources>
     <color name="colorTransparent">@color/transparent</color>
     <color name="purple_200">@color/color_FFAB40</color>
-    <color name="purple_500">#be4e28</color>
-    <color name="purple_700">#be4e28</color>
+    <color name="purple_500">#EF7801</color>
+    <color name="purple_700">#EF7801</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="colorAccent">#B8B8B8</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#0a2c4f</color>
-    <color name="colorPrimary">#be4e28</color>
+    <color name="colorPrimary">#EF7801</color>
     <color name="color_FFAB40">#FFAB40</color>
-    <color name="colorPrimaryDark">#be4e28</color>
+    <color name="colorPrimaryDark">#EF7801</color>
     <color name="darktextcolor">#6B7C91</color>
     <color name="dark_gray">#636363</color>
     <color name="transparent">#00000000</color>
@@ -35,6 +35,7 @@
     <color name="color_EFF3F6">#EFF3F6</color>
     <color name="color_747474">#747474</color>
     <color name="color_d9d9d9">#d9d9d9</color>
+    <color name="color_f8f8f8">#f8f8f8</color>
     <color name="bordercolor">#e3e9ed</color>
     <color name="color_1AC98F">#1AC98F</color>
     <color name="color_4CAD3B">#4CAD3B</color>
@@ -54,4 +55,5 @@
     <color name="txt_disabled_color">#75848F</color>
     <color name="base">#4a4a4a</color>
     <color name="color_797777">#797777</color>
+    <color name="notFoundBackground">#DD222222</color>
 </resources>

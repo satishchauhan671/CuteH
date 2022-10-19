@@ -1,6 +1,5 @@
 package com.digipanther.cuteh.model
 
-import java.lang.reflect.Constructor
 
 class HotelModel() {
     var ID: Int = 0
@@ -8,7 +7,7 @@ class HotelModel() {
     var BUSINESS_NAME: String? = null
     var ADDRESS: String? = null
     var MOBILE_NO: String? = null
-    var ROOMS: Int = 0
+    var ROOMS: Double = 0.0
     var IMAGE_PATH: String? = null
     var RATE: String? = null
     var DINE_TABLE: Int = 0
@@ -19,4 +18,5 @@ class HotelModel() {
     var FEEDBACK: String? = null
     var LATITUDE: String? = null
     var LONGITUDE: String? = null
+    var PRICE: String? = null
 }

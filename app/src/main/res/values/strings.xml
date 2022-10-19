@@ -10,7 +10,8 @@
     <string name="feedback">Feedback</string>
     <string name="tables">Tables</string>
     <string name="hotel_id">Hotel Id</string>
-    <string name="book_now">Book Now Option</string>
+    <string name="book_now_option">Book Now Option</string>
+    <string name="book_now">Book Now</string>
     <string name="wine_beer_available"><![CDATA[Wine & Beer Available]]></string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -26,6 +27,7 @@
     <string name="collage_details">Add Collage Details</string>
     <string name="query_from">Query From</string>
     <string name="collage_img">Collage Building Image</string>
+    <string name="hotel_img">Hotel Building Image</string>
     <string name="hotel_name">Hotel Name</string>
     <string name="hotel">Hotel</string>
     <string name="profile">My Profile</string>
@@ -35,4 +37,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="logout_from_app">Do you want to logout ?</string>
+    <string name="view_all">View All</string>
+    <string name="price">Price</string>
+    <string name="you_have_not_add">"You haven't add any hotel"</string>
+    <string name="you_can_add">You can add hotel from click on bottom tab hotel</string>
 </resources>

@@ -38,6 +38,7 @@ class DatabaseHelper private constructor(context: Context) :
         const val STAFF = "STAFF"
         const val WINE_BEER_AVAILABLE = "WINE_BEER_AVAILABLE"
         const val BOOK_NOW = "BOOK_NOW"
+        const val PRICE = "PRICE"
 
         //institute tables fields
         const val COLLEGE_ID = "COLLEGE_ID"
@@ -68,7 +69,6 @@ class DatabaseHelper private constructor(context: Context) :
 
 
     override fun onCreate(db: SQLiteDatabase) {
-
         val TABLE_HOTEL_MST = "CREATE TABLE " + HOTEL_MST + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 HOTEL_ID + " TEXT," +
@@ -84,9 +84,11 @@ class DatabaseHelper private constructor(context: Context) :
                 WINE_BEER_AVAILABLE + " TEXT," +
                 BOOK_NOW + " TEXT," +
                 FEEDBACK + " TEXT," +
+                PRICE + " TEXT," +
                 LATITUDE + " TEXT," +
                 LONGITUDE + " TEXT" +
                 ");"
+
 
 
         val TABLE_INSTITUTE_MST = "CREATE TABLE " + INSTITUTE_MST + "(" +
@@ -101,14 +103,14 @@ class DatabaseHelper private constructor(context: Context) :
                 QUERY_FROM + " QUERY_FROM," +
                 FEEDBACK + " FEEDBACK," +
                 LATITUDE + " LATITUDE," +
-                LONGITUDE + " LONGITUDE," +
+                LONGITUDE + " LONGITUDE" +
                 ");"
 
         val TABLE_USER_MST = "CREATE TABLE " + USER_MST + "(" +
                 USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 USER_NAME + " TEXT," +
                 PHOTO + " TEXT," +
-                MOBILE + " INTEGER," +
+                MOBILE + " INTEGER" +
                 ");"
 
 
