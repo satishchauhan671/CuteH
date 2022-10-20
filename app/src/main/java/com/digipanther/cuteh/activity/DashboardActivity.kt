@@ -107,7 +107,7 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                     fragment = DashboardFragment(dashboardBinding)
                     navigationView.menu
                     navigationView.menu.findItem(R.id.navigation_dashboard).isChecked = true
-                    Utility.addFragment(
+                    Utility.replaceFragment(
                         fragment,
                         supportFragmentManager,
                         R.id.layout_fragment
@@ -193,7 +193,7 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                 actionBar!!.title = "Hotel"
                 fragment = HotelFragment(dashboardBinding)
                 navigationView.menu.findItem(R.id.navigation_hotel).isChecked = true
-                Utility.addFragment(
+                Utility.replaceFragment(
                     fragment,
                     supportFragmentManager,
                     R.id.layout_fragment
@@ -248,7 +248,7 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                 if (fragment is DashboardFragment) {
                     finishAffinity()
                 }   else {
-                    finishAffinity()
+                    supportFragmentManager.popBackStack()
                 }
             }
         } catch (e: Exception) {

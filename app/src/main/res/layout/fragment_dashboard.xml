@@ -60,7 +60,7 @@
                             android:fontFamily="@font/robo_bold"
                             android:text="Satish Chauhan"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/text_size_14sp" />
+                            android:textSize="@dimen/text_size_20sp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                             android:fontFamily="@font/robo_medium"
                             android:text="9999395079"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_12sp" />
+                            android:textSize="@dimen/text_size_14sp" />
 
 
                     </LinearLayout>

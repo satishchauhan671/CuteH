@@ -52,6 +52,7 @@ class HotelDataSource private constructor() {
                 values.put(DatabaseHelper.STAFF, hotelMode.STAFF)
                 values.put(DatabaseHelper.WINE_BEER_AVAILABLE, hotelMode.WINE_BEER_AVAILABLE)
                 values.put(DatabaseHelper.BOOK_NOW, hotelMode.BOOK_NOW)
+                values.put(DatabaseHelper.PRICE, hotelMode.PRICE)
                 values.put(DatabaseHelper.FEEDBACK, hotelMode.FEEDBACK)
                 values.put(DatabaseHelper.LATITUDE, hotelMode.LATITUDE)
                 values.put(DatabaseHelper.LONGITUDE, hotelMode.LONGITUDE)

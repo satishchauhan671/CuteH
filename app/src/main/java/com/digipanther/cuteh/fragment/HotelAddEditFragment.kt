@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,7 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,6 +24,7 @@ import com.digipanther.cuteh.R
 import com.digipanther.cuteh.activity.CameraActivity
 import com.digipanther.cuteh.async.ImageAsync
 import com.digipanther.cuteh.common.Utility
+import com.digipanther.cuteh.databinding.ActivityDashboardBinding
 import com.digipanther.cuteh.databinding.FragmentAddHotelBinding
 import com.digipanther.cuteh.databinding.FragmentHotelBinding
 import com.digipanther.cuteh.dbHelper.HotelDataHelper
@@ -30,11 +34,12 @@ import com.digipanther.cuteh.model.HotelModel
 import kotlinx.android.synthetic.main.gallery_bottom_sheet.view.*
 import java.io.File
 
-class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListener {
+class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListener {
 
     private lateinit var hotelAddHotelBinding: FragmentAddHotelBinding
     private var mActivity = FragmentActivity()
-
+    private var hotelModel: HotelModel? = null
+    private lateinit var activityDashboardBinding: ActivityDashboardBinding
     var hotelNameStr: String? = null
     var mobileNoStr: String? = null
     var hotelIdStr: String? = null
@@ -45,13 +50,19 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
     var tableStr: String = "0"
     var addressStr: String? = null
     var feedbackStr: String? = null
-    lateinit var hotelModel: HotelModel
     private var imgPath: String? = null
 
     val REQUEST_CODE_CAMERA = 200
     val REQUEST_CODE_GALLERY = 201
     val REQUEST_PERMISSION_CAMERA = 203
     val REQUEST_PERMISSION_GALLERY = 204
+
+    constructor()
+
+    constructor(hotelModel: HotelModel, activityDashboardBinding: ActivityDashboardBinding) {
+        this.hotelModel = hotelModel
+        this.activityDashboardBinding = activityDashboardBinding
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,13 +74,88 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_hotel, container, false)
 
         hotelAddHotelBinding.saveDetailsTv.setOnClickListener(this)
+        hotelAddHotelBinding.wineBeerSwitch.setOnClickListener(this)
+        hotelAddHotelBinding.bookNowSwitch.setOnClickListener(this)
 
         return hotelAddHotelBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateUi()
+        if (hotelModel == null){
+            hotelModel = HotelModel()
+        }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as AppCompatActivity
+    }
+
+    private fun updateUi() {
+        if (hotelModel != null) {
+            if (!Utility.isNullOrEmpty(hotelModel?.BUSINESS_NAME)) {
+                hotelAddHotelBinding.hotelNameEt.setText(hotelModel?.BUSINESS_NAME)
+            }
+
+            if (!Utility.isNullOrEmpty(hotelModel?.HOTEL_ID)) {
+                hotelAddHotelBinding.hotelIdEt.setText(hotelModel?.HOTEL_ID)
+            }
+
+            if (!Utility.isNullOrEmpty(hotelModel?.MOBILE_NO)) {
+                hotelAddHotelBinding.mobileNoEt.setText(hotelModel?.MOBILE_NO)
+            }
+
+
+            hotelAddHotelBinding.roomEt.setText(hotelModel?.ROOMS.toString())
+            hotelAddHotelBinding.staffEt.setText(hotelModel?.STAFF.toString())
+
+            if (!Utility.isNullOrEmpty(hotelModel?.RATE)) {
+                hotelAddHotelBinding.ratingEt.setText(hotelModel?.RATE.toString())
+            }
+
+            hotelAddHotelBinding.tableEt.setText(hotelModel?.DINE_TABLE.toString())
+            hotelAddHotelBinding.priceEt.setText(hotelModel?.PRICE.toString())
+
+
+
+            if (!Utility.isNullOrEmpty(hotelModel?.BOOK_NOW)) {
+                hotelAddHotelBinding.bookNowSwitch.isChecked = true
+                hotelAddHotelBinding.bookNowSwitch.trackTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                hotelAddHotelBinding.bookNowSwitch.thumbTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+            } else {
+                hotelAddHotelBinding.bookNowSwitch.isChecked = false
+                hotelAddHotelBinding.bookNowSwitch.trackTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                hotelAddHotelBinding.bookNowSwitch.thumbTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+            }
+
+            if (!Utility.isNullOrEmpty(hotelModel?.WINE_BEER_AVAILABLE)) {
+                hotelAddHotelBinding.wineBeerSwitch.isChecked = true
+                hotelAddHotelBinding.wineBeerSwitch.trackTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+            } else {
+                hotelAddHotelBinding.wineBeerSwitch.isChecked = false
+                hotelAddHotelBinding.wineBeerSwitch.trackTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
+                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+            }
+
+            if (!Utility.isNullOrEmpty(hotelModel?.ADDRESS)) {
+                hotelAddHotelBinding.addressEt.setText(hotelModel?.ADDRESS)
+            }
+
+            if (!Utility.isNullOrEmpty(hotelModel?.FEEDBACK)) {
+                hotelAddHotelBinding.feedbackEt.setText(hotelModel?.FEEDBACK)
+            }
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -86,20 +172,29 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
                 addressStr = hotelAddHotelBinding.addressEt.text.toString().trim()
                 feedbackStr = hotelAddHotelBinding.feedbackEt.text.toString().trim()
 
-                hotelModel.BUSINESS_NAME = hotelNameStr
-                hotelModel.MOBILE_NO = mobileNoStr
-                hotelModel.HOTEL_ID = hotelIdStr
-                hotelModel.PRICE = priceStr
-                hotelModel.ROOMS = roomStr.toDouble()
-                hotelModel.STAFF = staffStr.toInt()
-                hotelModel.RATE = ratingStr
-                hotelModel.DINE_TABLE = tableStr.toInt()
-                hotelModel.ADDRESS = addressStr
-                hotelModel.FEEDBACK = feedbackStr
+                hotelModel?.BUSINESS_NAME = hotelNameStr
+                hotelModel?.MOBILE_NO = mobileNoStr
+                hotelModel?.HOTEL_ID = hotelIdStr
+                hotelModel?.PRICE = priceStr
+                if (!Utility.isNullOrEmpty(roomStr)){
+                    hotelModel?.ROOMS = roomStr.toDouble()
+                }
+                if (!Utility.isNullOrEmpty(staffStr)){
+                    hotelModel?.STAFF = staffStr.toInt()
+                }
+                hotelModel?.RATE = ratingStr
+                if (!Utility.isNullOrEmpty(tableStr)){
+                    hotelModel?.DINE_TABLE = tableStr.toInt()
+                }
+                hotelModel?.ADDRESS = addressStr
+                hotelModel?.FEEDBACK = feedbackStr
 
-               var isSaved : Boolean = HotelDataHelper.saveHotelData(hotelModel, mActivity)
-                if (isSaved){
-                    Utility.snackBar(view,"Data Saved Successfully", 2000,mActivity.resources.getColor(R.color.color_green))
+                var isSaved: Boolean = HotelDataHelper.saveHotelData(hotelModel!!, mActivity)
+                if (isSaved) {
+                    Utility.snackBar(view,
+                        "Data Saved Successfully",
+                        2000,
+                        mActivity.resources.getColor(R.color.color_green))
                 }
             }
 
@@ -126,6 +221,34 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
                     mActivity.supportFragmentManager,
                     feederGalleryBottomSheet.tag
                 )
+            }
+
+            R.id.wineBeerSwitch -> {
+                if (hotelAddHotelBinding.wineBeerSwitch.isChecked) {
+                    hotelAddHotelBinding.wineBeerSwitch.trackTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                    hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                } else {
+                    hotelAddHotelBinding.wineBeerSwitch.trackTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                    hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                }
+            }
+
+            R.id.bookNowSwitch -> {
+                if (hotelAddHotelBinding.bookNowSwitch.isChecked) {
+                    hotelAddHotelBinding.bookNowSwitch.trackTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                    hotelAddHotelBinding.bookNowSwitch.thumbTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
+                } else {
+                    hotelAddHotelBinding.bookNowSwitch.trackTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                    hotelAddHotelBinding.bookNowSwitch.thumbTintList =
+                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+                }
             }
         }
     }
@@ -234,15 +357,15 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
                         if (file.exists()) {
                             ImageAsync(
                                 file,
-                                hotelModel,
+                                hotelModel!!,
                                 object : PhotoCompressedListener {
                                     override fun compressedPhoto(path: String?) {
-                                        if (hotelModel.IMAGE_PATH != null) {
+                                        if (hotelModel?.IMAGE_PATH != null) {
                                             hotelAddHotelBinding.hotelIv.visibility =
                                                 View.VISIBLE
                                             hotelAddHotelBinding.hotelIv.setImageBitmap(
                                                 Utility.getBitmapByStringImage(
-                                                    hotelModel.IMAGE_PATH
+                                                    hotelModel?.IMAGE_PATH
                                                 )
                                             )
                                         }
@@ -262,17 +385,17 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
                     if (file.exists()) {
                         ImageAsync(
                             file,
-                            hotelModel,
+                            hotelModel!!,
                             object : PhotoCompressedListener {
                                 override fun compressedPhoto(path: String?) {
                                     if (hotelModel != null) {
-                                        if (hotelModel.IMAGE_PATH != null) {
+                                        if (hotelModel?.IMAGE_PATH != null) {
 
                                             hotelAddHotelBinding.hotelIv.visibility =
                                                 View.VISIBLE
                                             hotelAddHotelBinding.hotelIv.setImageBitmap(
                                                 Utility.getBitmapByStringImage(
-                                                    hotelModel.IMAGE_PATH
+                                                    hotelModel?.IMAGE_PATH
                                                 )
                                             )
                                         }
@@ -298,13 +421,13 @@ class HotelAddFragment() : Fragment(), View.OnClickListener, ImageCallbackListen
                     object : PhotoCompressedListener {
                         override fun compressedPhoto(path: String?) {
                             if (hotelModel != null) {
-                                if (hotelModel.IMAGE_PATH != null) {
+                                if (hotelModel?.IMAGE_PATH != null) {
 
                                     hotelAddHotelBinding.hotelIv.visibility =
                                         View.VISIBLE
                                     hotelAddHotelBinding.hotelIv.setImageBitmap(
                                         Utility.getBitmapByStringImage(
-                                            hotelModel.IMAGE_PATH
+                                            hotelModel?.IMAGE_PATH
                                         )
                                     )
                                 }

@@ -63,7 +63,7 @@ class DashboardFragment : Fragment {
     private fun hotelAdapterInit(){
         var hotelList: ArrayList<HotelModel>? = HotelDataHelper.getAll(mActivity)
         if (hotelList != null && hotelList.size > 0) {
-            hotelAdapter = HotelAdapter(hotelList, mActivity)
+            hotelAdapter = HotelAdapter(hotelList, mActivity,mActivity.supportFragmentManager,activityDashboardBinding)
             dashboardFragmentBinding.hotelRv.layoutManager =
                 LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false)
             dashboardFragmentBinding.hotelRv.adapter = hotelAdapter

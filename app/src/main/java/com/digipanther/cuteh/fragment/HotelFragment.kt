@@ -47,6 +47,7 @@ class HotelFragment : Fragment,View.OnClickListener{
         super.onViewCreated(view, savedInstanceState)
         dashboardBinding.appBarHome.toolbar.visibility = View.GONE
         hotelBinding.whiteToolbar.img_back.setOnClickListener(this)
+        hotelBinding.cardAddHotel.setOnClickListener(this)
         showHotelList()
     }
 
@@ -57,7 +58,7 @@ class HotelFragment : Fragment,View.OnClickListener{
             hotelBinding.hotelRv.visibility = View.VISIBLE
             hotelBinding.llNoData.visibility = View.GONE
 
-            hotelAdapter = HotelAdapter(hotelList,mActivity)
+            hotelAdapter = HotelAdapter(hotelList,mActivity,mActivity.supportFragmentManager,dashboardBinding)
             hotelBinding.hotelRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
             hotelBinding.hotelRv.adapter = hotelAdapter
 
@@ -75,7 +76,7 @@ class HotelFragment : Fragment,View.OnClickListener{
     override fun onClick(p0: View?) {
         when (p0?.id){
             R.id.cardAddHotel -> {
-                Utility.replaceFragment(HotelAddFragment(),mActivity.supportFragmentManager,R.id.layout_fragment)
+                Utility.replaceFragment(HotelAddEditFragment(),mActivity.supportFragmentManager,R.id.layout_fragment)
             }
 
             R.id.img_back -> {

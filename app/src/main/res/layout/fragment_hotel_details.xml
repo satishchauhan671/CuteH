@@ -15,18 +15,17 @@
         android:background="@color/white">
 
         <include
-            android:id="@+id/toolbar"
+            android:id="@+id/whiteToolbar"
             layout="@layout/layout_toolbar_white_bg" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/saveDetailsTv"
-            android:layout_below="@+id/toolbar"
+            android:layout_above="@id/editDetailsTv"
+            android:layout_below="@+id/whiteToolbar"
             android:scrollbars="none">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_margin_20dp"
@@ -38,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_margin_15dp"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/activity_margin_60dp"
@@ -64,26 +63,24 @@
                         android:paddingLeft="@dimen/activity_margin_10dp">
 
                         <TextView
-                            android:id="@+id/txt_crop_name"
+                            android:id="@+id/hotelNameTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/robo_bold"
                             android:paddingStart="@dimen/activity_margin_8dp"
-                            android:text="Royal Divine Inn (GXR8826)"
                             android:textColor="@color/dark_blue"
-                            android:textSize="@dimen/text_size_14sp" />
+                            android:textSize="@dimen/text_size_20sp" />
 
                         <TextView
-                            android:id="@+id/txt_month"
+                            android:id="@+id/mobileNoTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/mobile_no"
                             android:drawablePadding="@dimen/activity_margin_8dp"
-                            android:fontFamily="@font/robo_regular"
+                            android:fontFamily="@font/robo_medium"
                             android:gravity="center_vertical"
-                            android:text="9999395079"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_12sp" />
+                            android:textSize="@dimen/text_size_14sp" />
 
                     </LinearLayout>
 
@@ -102,138 +99,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robo_medium"
-                        android:text="@string/add_hotel_details"
+                        android:text="@string/hotel_details"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_14sp" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/activity_margin_15dp"
-                    android:background="@drawable/outline_white_bg"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/robo_regular"
-                        android:text="@string/hotel_name"
-                        android:textColor="@color/color_7E919B"
-                        android:textSize="@dimen/text_size_11sp" />
-
-                    <EditText
-                        android:id="@+id/hotelNameEt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/activity_margin_5dp"
-                        android:layout_marginBottom="@dimen/activity_margin_15dp"
-                        android:background="@null"
-                        android:fontFamily="@font/robo_bold"
-                        android:gravity="start|center"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:maxLength="100"
-                        android:maxLines="1"
-                        android:minHeight="@dimen/activity_margin_25dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/color_747474"
-                        android:textCursorDrawable="@null"
-                        android:textSize="@dimen/text_size_13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_margin_15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_margin_6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/outline_white_bg"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lbl_Unit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/robo_regular"
-                            android:text="@string/mobile_no"
-                            android:textColor="@color/color_7E919B"
-                            android:textSize="@dimen/text_size_11sp" />
-
-                        <EditText
-                            android:id="@+id/mobileNoEt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/activity_margin_5dp"
-                            android:layout_marginBottom="@dimen/activity_margin_15dp"
-                            android:background="@null"
-                            android:fontFamily="@font/robo_bold"
-                            android:gravity="start|center"
-                            android:hint=" "
-                            android:imeOptions="actionNext"
-                            android:inputType="text"
-                            android:maxLength="10"
-                            android:maxLines="1"
-                            android:minHeight="@dimen/activity_margin_25dp"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/color_747474"
-                            android:textCursorDrawable="@null"
-                            android:textSize="@dimen/text_size_13sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_margin_6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/outline_white_bg"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/lbl_hotel_id"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/robo_regular"
-                            android:text="@string/hotel_id"
-                            android:textColor="@color/color_7E919B"
-                            android:textSize="@dimen/text_size_11sp" />
-
-                        <EditText
-                            android:id="@+id/hotelIdEt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/activity_margin_5dp"
-                            android:layout_marginBottom="@dimen/activity_margin_15dp"
-                            android:background="@null"
-                            android:fontFamily="@font/robo_bold"
-                            android:gravity="start|center"
-                            android:imeOptions="actionNext"
-                            android:inputType="textCapCharacters"
-                            android:maxLength="10"
-                            android:maxLines="1"
-                            android:minHeight="@dimen/activity_margin_25dp"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/color_747474"
-                            android:textCursorDrawable="@null"
-                            android:textSize="@dimen/text_size_13sp" />
-
-                    </LinearLayout>
+                        android:textSize="@dimen/text_size_16sp" />
 
                 </LinearLayout>
 
@@ -263,8 +131,8 @@
                             android:textColor="@color/color_7E919B"
                             android:textSize="@dimen/text_size_11sp" />
 
-                        <EditText
-                            android:id="@+id/roomEt"
+                        <TextView
+                            android:id="@+id/roomTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -273,9 +141,6 @@
                             android:background="@null"
                             android:fontFamily="@font/os_bold"
                             android:gravity="start|center"
-                            android:hint=""
-                            android:imeOptions="actionNext"
-                            android:inputType="numberDecimal"
                             android:maxLength="10"
                             android:maxLines="1"
                             android:minHeight="@dimen/activity_margin_25dp"
@@ -305,8 +170,8 @@
                             android:textColor="@color/color_7E919B"
                             android:textSize="@dimen/text_size_11sp" />
 
-                        <EditText
-                            android:id="@+id/staffEt"
+                        <TextView
+                            android:id="@+id/staffTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -349,8 +214,8 @@
                                 android:textColor="@color/color_7E919B"
                                 android:textSize="@dimen/text_size_11sp" />
 
-                            <EditText
-                                android:id="@+id/ratingEt"
+                            <TextView
+                                android:id="@+id/ratingTv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -359,7 +224,8 @@
                                 android:background="@null"
                                 android:fontFamily="@font/os_bold"
                                 android:gravity="start|center"
-                                android:hint=""
+                                android:drawablePadding="@dimen/activity_margin_5dp"
+                                android:drawableStart="@drawable/rate_star"
                                 android:imeOptions="actionNext"
                                 android:inputType="numberDecimal"
                                 android:maxLength="10"
@@ -395,8 +261,8 @@
                                 android:textColor="@color/color_7E919B"
                                 android:textSize="@dimen/text_size_11sp" />
 
-                            <EditText
-                                android:id="@+id/tableEt"
+                            <TextView
+                                android:id="@+id/tableTv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -406,7 +272,7 @@
                                 android:fontFamily="@font/os_bold"
                                 android:gravity="start|center"
                                 android:hint=""
-                                android:imeOptions="actionDone"
+                                android:imeOptions="actionNext"
                                 android:inputType="numberDecimal"
                                 android:maxLength="10"
                                 android:maxLines="1"
@@ -439,7 +305,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.1"
                         android:background="@drawable/outline_white_bg"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginEnd="@dimen/activity_margin_5dp">
 
                         <TextView
                             android:id="@+id/lbl_price"
@@ -450,8 +317,8 @@
                             android:textColor="@color/color_7E919B"
                             android:textSize="@dimen/text_size_11sp" />
 
-                        <EditText
-                            android:id="@+id/priceEt"
+                        <TextView
+                            android:id="@+id/priceTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -460,7 +327,7 @@
                             android:background="@null"
                             android:fontFamily="@font/robo_bold"
                             android:gravity="start|center"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:inputType="numberDecimal"
                             android:maxLength="10"
                             android:maxLines="1"
@@ -471,7 +338,6 @@
                             android:textSize="@dimen/text_size_13sp" />
 
                     </LinearLayout>
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -496,11 +362,10 @@
                             android:textSize="@dimen/text_size_11sp"/>
 
                         <View
+                            android:layout_marginTop="@dimen/activity_margin_5dp"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/activity_margin_1dp"
-                            android:background="@color/color_d9d9d9"
-                            android:layout_marginTop="@dimen/activity_margin_5dp"/>
-
+                            android:layout_height="1dp"
+                            android:background="@color/color_d9d9d9"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -524,8 +389,8 @@
                         android:textColor="@color/color_7E919B"
                         android:textSize="@dimen/text_size_11sp" />
 
-                    <EditText
-                        android:id="@+id/addressEt"
+                    <TextView
+                        android:id="@+id/addressTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -534,7 +399,7 @@
                         android:background="@null"
                         android:fontFamily="@font/robo_bold"
                         android:gravity="start|center"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLength="100"
                         android:maxLines="1"
@@ -564,8 +429,8 @@
                         android:textColor="@color/color_7E919B"
                         android:textSize="@dimen/text_size_11sp" />
 
-                    <EditText
-                        android:id="@+id/feedbackEt"
+                        <TextView
+                        android:id="@+id/feedbackTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -603,11 +468,12 @@
                         app:cardElevation="0dp">
 
                         <LinearLayout
-                            android:id="@+id/lyt_hotel_image"
+                            android:id="@+id/lytHotelImage"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/camera_img_background"
                             android:gravity="center"
+                            android:visibility="gone"
                             android:orientation="vertical">
 
                             <ImageView
@@ -644,7 +510,7 @@
         </ScrollView>
 
         <TextView
-            android:id="@+id/saveDetailsTv"
+            android:id="@+id/editDetailsTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -657,7 +523,7 @@
             android:gravity="center"
             android:padding="@dimen/activity_margin_16dp"
             android:paddingStart="@dimen/activity_margin_16dp"
-            android:text="@string/save_details"
+            android:text="@string/edit_details"
             android:textAllCaps="true"
             android:textColor="@color/dark_blue"
             android:textSize="@dimen/text_size_13sp"

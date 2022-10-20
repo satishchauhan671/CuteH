@@ -2,7 +2,8 @@
     <string name="app_name">CuteH</string>
     <string name="save_details">Save Details</string>
     <string name="address">Address</string>
-    <string name="hotel_details">Add Hotel Details</string>
+    <string name="hotel_details">Hotel Details</string>
+    <string name="add_hotel_details">Add/Edit Hotel Details</string>
     <string name="rooms">Rooms</string>
     <string name="staff">Staff</string>
     <string name="mobile_no">Mobile Number</string>
@@ -41,4 +42,5 @@
     <string name="price">Price</string>
     <string name="you_have_not_add">"You haven't add any hotel"</string>
     <string name="you_can_add">You can add hotel from click on bottom tab hotel</string>
+    <string name="edit_details">Edit Details</string>
 </resources>

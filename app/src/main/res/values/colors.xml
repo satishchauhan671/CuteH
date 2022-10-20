@@ -3,6 +3,7 @@
     <color name="colorTransparent">@color/transparent</color>
     <color name="purple_200">@color/color_FFAB40</color>
     <color name="purple_500">#EF7801</color>
+    <color name="color_FD9835">#FD9835</color>
     <color name="purple_700">#EF7801</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="colorAccent">#B8B8B8</color>

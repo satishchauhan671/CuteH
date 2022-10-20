@@ -6,21 +6,40 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digipanther.cuteh.R
 import com.digipanther.cuteh.common.Utility
+import com.digipanther.cuteh.databinding.ActivityDashboardBinding
+import com.digipanther.cuteh.fragment.HotelAddEditFragment
+import com.digipanther.cuteh.fragment.HotelDetailsFragment
 import com.digipanther.cuteh.model.HotelModel
 
 class HotelAdapter : RecyclerView.Adapter<HotelAdapter.ViewHolder> {
-
+    private lateinit var activityDashboardBinding: ActivityDashboardBinding
     var context: Context? = null
     private lateinit var hotelList: List<HotelModel>
     var emptyVal : String? = "N/A"
+    private lateinit var fragmentManager : FragmentManager
+
     constructor()
 
     constructor(hotelList: List<HotelModel>, context: Context) {
         this.context = context
         this.hotelList = hotelList
+    }
+
+    constructor(hotelList: List<HotelModel>, context: Context, fragmentManager: FragmentManager, activityDashboardBinding: ActivityDashboardBinding) {
+        this.context = context
+        this.hotelList = hotelList
+        this.fragmentManager = fragmentManager
+        this.activityDashboardBinding = activityDashboardBinding
+    }
+
+    constructor(hotelList: List<HotelModel>, context: Context, activityDashboardBinding: ActivityDashboardBinding) {
+        this.context = context
+        this.hotelList = hotelList
+        this.activityDashboardBinding = activityDashboardBinding
     }
 
 
@@ -53,9 +72,9 @@ class HotelAdapter : RecyclerView.Adapter<HotelAdapter.ViewHolder> {
         }
 
         if (!Utility.isNullOrEmpty(hotelModel.BOOK_NOW)){
-            holder.bookNowTv.text = hotelModel.BOOK_NOW
+            holder.bookNowTv.text = "Book Now"
         }else{
-            holder.bookNowTv.text = emptyVal
+            holder.bookNowTv.visibility = View.GONE
         }
 
         if (!Utility.isNullOrEmpty(hotelModel.RATE)){
@@ -69,6 +88,12 @@ class HotelAdapter : RecyclerView.Adapter<HotelAdapter.ViewHolder> {
         }else{
             holder.priceTv.text = emptyVal
         }
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            Utility.replaceFragment(HotelDetailsFragment(hotelModel, activityDashboardBinding),
+                fragmentManager,
+                R.id.layout_fragment)
+        })
     }
 
     override fun getItemCount(): Int {

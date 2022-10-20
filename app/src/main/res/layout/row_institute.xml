@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dayanand University"
-                android:textColor="@color/dark_blue"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_14sp"
                 android:fontFamily="@font/robo_bold"
                 android:layout_marginBottom="@dimen/activity_margin_3dp"/>
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="9999395079"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12sp"
                 android:fontFamily="@font/robo_medium"
                 android:layout_marginBottom="@dimen/activity_margin_3dp"/>
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Main Jaipur Road, 100ft Road, 201005"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_size_12sp"
                 android:fontFamily="@font/robo_medium"
                 android:layout_marginBottom="@dimen/activity_margin_10dp"/>
