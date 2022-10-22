@@ -13,5 +13,6 @@ class InstituteModel(){
     var MOBILE_NO: String? = null
     var QUERY_FROM: String? = null
     var SUBJECT: String? = null
+    var FEETYPE: String? = null
     var TUITION_FEES: Double = 0.0
 }

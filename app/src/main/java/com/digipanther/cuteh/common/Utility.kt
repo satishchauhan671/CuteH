@@ -5,9 +5,7 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.Dialog
 import android.app.ProgressDialog
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -22,14 +20,9 @@ import android.media.ExifInterface
 import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.Uri
-import android.net.wifi.SupplicantState
-import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.*
 import android.provider.Settings
-import android.provider.SyncStateContract
-import android.provider.UserDictionary.Words.FREQUENCY
-import android.telecom.Call
 import android.telephony.TelephonyManager
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -39,7 +32,6 @@ import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.util.Base64
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -54,9 +46,7 @@ import com.digipanther.cuteh.R
 import com.digipanther.cuteh.activity.LoginActivity
 import com.digipanther.cuteh.app.MyApplication
 import com.digipanther.cuteh.dbHelper.UserDataHelper
-import com.digipanther.cuteh.model.UserInfoModel
 import com.google.android.material.snackbar.Snackbar
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
 import java.math.BigDecimal
@@ -109,6 +99,45 @@ object Utility {
             }
         }
     }
+
+
+    fun getCollageId(login_id: String): String? {
+        var collageId: String? = null
+        try {
+            val date: String = getCurrentDate_yy_mm_dd()!!
+            collageId = "CTHI${login_id}${date}${getRandom(1000)}"
+        } catch (exception: java.lang.Exception) {
+            exception.message
+        }
+        return collageId
+    }
+
+    fun getHotelId(login_id: String): String? {
+        var collageId: String? = null
+        try {
+            val date: String = getCurrentDate_yy_mm_dd()!!
+            collageId = "CTHH${login_id}${date}${getRandom(1000)}"
+        } catch (exception: java.lang.Exception) {
+            exception.message
+        }
+        return collageId
+    }
+
+    fun getCurrentDate_yy_mm_dd(): String? {
+        return dateToString_yy_mm_dd(Date())
+    }
+
+    fun dateToString_yy_mm_dd(date: Date?): String? {
+        var date1: String? = null
+        try {
+            val formatter = SimpleDateFormat("yyMMdd", Locale.ENGLISH)
+            date1 = formatter.format(date)
+        } catch (pe: java.lang.Exception) {
+            pe.printStackTrace()
+        }
+        return date1
+    }
+
 
     /* public static File convertBitmapToFile(Context context, Bitmap bitmap, String imageFileName) {
          File f = null;
@@ -279,7 +308,7 @@ object Utility {
         fragment: Fragment?,
         fragmentManager: FragmentManager,
         resId: Int,
-        bundle: Bundle
+        bundle: Bundle,
     ) {
         if (fragment != null) {
             val fragmentTransaction = fragmentManager.beginTransaction()
@@ -934,7 +963,7 @@ object Utility {
         originalWidthToHeightRatio: Double,
         originalHeightToWidthRatio: Double,
         maxHeight: Int,
-        maxWidth: Int
+        maxWidth: Int,
     ): Bitmap? {
         var bm = bm
         if (bmOriginalWidth > maxWidth || bmOriginalHeight > maxHeight) {
@@ -966,7 +995,7 @@ object Utility {
         bm: Bitmap?,
         maxHeight: Int,
         bmOriginalHeight: Int,
-        originalWidthToHeightRatio: Double
+        originalWidthToHeightRatio: Double,
     ): Bitmap? {
         var bm = bm
         val newHeight = Math.min(maxHeight, bmOriginalHeight)
@@ -979,7 +1008,7 @@ object Utility {
         bm: Bitmap?,
         maxWidth: Int,
         bmOriginalWidth: Int,
-        originalHeightToWidthRatio: Double
+        originalHeightToWidthRatio: Double,
     ): Bitmap? {
         //scale the width
         var bm = bm
@@ -1075,7 +1104,7 @@ object Utility {
         uploadedCount: Int,
         failedCount: Int,
         uploadingType: String,
-        failedMessage: String
+        failedMessage: String,
     ) {
         Handler(Looper.getMainLooper()).post {
             progressDialog.setMessage(
@@ -1196,7 +1225,7 @@ object Utility {
         year: String?,
         hh: String?,
         mm: String?,
-        ss: String?
+        ss: String?,
     ): String? {
         var hh = hh
         var mm = mm
@@ -1986,7 +2015,7 @@ object Utility {
     private fun is_Print_Skip(
         `val`: String,
         skip_Flag: Boolean,
-        account_SubHead_Flag: Boolean
+        account_SubHead_Flag: Boolean,
     ): Boolean {
         return if (skip_Flag) {
             if (getDoubleValue(`val`) == 0.0 && skip_Flag) true else false

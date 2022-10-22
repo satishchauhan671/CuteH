@@ -6,7 +6,7 @@ import com.digipanther.cuteh.R
 import com.digipanther.cuteh.common.Utility
 import com.digipanther.cuteh.fragment.LoginFragment
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : MyActivity() {
     var loginFragment: LoginFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

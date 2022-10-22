@@ -84,7 +84,7 @@ class HotelAdapter : RecyclerView.Adapter<HotelAdapter.ViewHolder> {
         }
 
         if (!Utility.isNullOrEmpty(hotelModel.PRICE)){
-            holder.priceTv.text = hotelModel.PRICE
+            holder.priceTv.text = "Rs. ${hotelModel.PRICE}"
         }else{
             holder.priceTv.text = emptyVal
         }

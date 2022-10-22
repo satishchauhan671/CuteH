@@ -35,12 +35,13 @@
                         app:cardCornerRadius="@dimen/card_radius_50dp">
 
                         <TextView
+                            android:id="@+id/nameTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:fontFamily="@font/robo_medium"
                             android:gravity="center"
-                            android:text="SC"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="40sp" />
 
@@ -55,18 +56,18 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/userNameTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/robo_bold"
-                            android:text="Satish Chauhan"
                             android:textColor="@color/dark_blue"
                             android:textSize="@dimen/text_size_20sp" />
 
                         <TextView
+                            android:id="@+id/mobileNoTv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/robo_medium"
-                            android:text="9999395079"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_14sp" />
 
@@ -87,7 +88,7 @@
                         android:layout_height="match_parent"
                         android:text="@string/hotel"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_16sp" />
+                        android:textSize="@dimen/text_size_14sp" />
 
                     <TextView
                         android:id="@+id/viewAllHotel"
@@ -96,7 +97,7 @@
                         android:layout_alignParentEnd="true"
                         android:text="@string/view_all"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_16sp" />
+                        android:textSize="@dimen/text_size_14sp" />
 
                 </RelativeLayout>
 
@@ -157,22 +158,61 @@
                         android:layout_height="match_parent"
                         android:text="@string/institute"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_16sp" />
+                        android:textSize="@dimen/text_size_14sp" />
 
                     <TextView
+                        android:id="@+id/viewAllInstitute"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:text="@string/view_all"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_16sp" />
+                        android:textSize="@dimen/text_size_14sp" />
 
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/institute_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/noInstitute"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/activity_margin_24dp"
+                    android:visibility="visible"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/activity_margin_24dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/activity_margin_50dp"
+                        android:layout_height="@dimen/activity_margin_50dp"
+                        android:src="@drawable/no_hotel"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_14sp"
+                        android:fontFamily="@font/robo_bold"
+                        android:text="@string/you_have_not_add"
+                        android:textColor="@color/dark_blue"
+                        android:layout_marginTop="@dimen/activity_margin_12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:fontFamily="@font/robo_regular"
+                        android:text="@string/you_can_add"
+                        android:textColor="@color/txt_disabled_color"
+                        android:layout_marginTop="@dimen/activity_margin_7dp"/>
+
+
+                </LinearLayout>
 
             </LinearLayout>
 

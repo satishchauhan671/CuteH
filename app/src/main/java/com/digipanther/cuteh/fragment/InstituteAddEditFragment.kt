@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,6 +11,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,33 +21,35 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.digipanther.cuteh.R
 import com.digipanther.cuteh.activity.CameraActivity
-import com.digipanther.cuteh.async.HotelImageAsync
+import com.digipanther.cuteh.async.InstituteImageAsync
 import com.digipanther.cuteh.common.Utility
 import com.digipanther.cuteh.databinding.ActivityDashboardBinding
-import com.digipanther.cuteh.databinding.FragmentAddHotelBinding
-import com.digipanther.cuteh.dbHelper.HotelDataHelper
+import com.digipanther.cuteh.databinding.FragmentAddInstituteBinding
+import com.digipanther.cuteh.dbHelper.InstituteDataHelper
 import com.digipanther.cuteh.listener.ImageCallbackListener
 import com.digipanther.cuteh.listener.PhotoCompressedListener
-import com.digipanther.cuteh.model.HotelModel
+import com.digipanther.cuteh.model.InstituteModel
 import kotlinx.android.synthetic.main.layout_toolbar_white_bg.view.*
 import java.io.File
 
-class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListener {
 
-    private lateinit var hotelAddHotelBinding: FragmentAddHotelBinding
+class InstituteAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListener {
+
+    private lateinit var hotelAddInstituteBinding: FragmentAddInstituteBinding
     private var mActivity = FragmentActivity()
-    private var hotelModel: HotelModel? = null
-    private var activityDashboardBinding: ActivityDashboardBinding? = null
-    var hotelNameStr: String? = null
+    private var instituteModel: InstituteModel? = null
+    private lateinit var activityDashboardBinding: ActivityDashboardBinding
+    var instituteNameStr: String? = null
     var mobileNoStr: String? = null
-    var hotelIdStr: String? = null
-    var priceStr: String = "0.0"
-    var roomStr: String = "0"
-    var staffStr: String = "0"
-    var ratingStr: String = "0"
-    var tableStr: String = "0"
-    var addressStr: String? = null
+    var collageFeeStr: String? = null
+    var courseStr: String? = null
+    var branchStr: String? = null
+    var subjectStr: String? = null
+    var queryFormStr: String? = null
     var feedbackStr: String? = null
+    var instituteIdStr: String? = null
+    var feeTypeStr: String? = null
+
     private var imgPath: String? = null
 
     val REQUEST_CODE_CAMERA = 200
@@ -56,12 +59,17 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
 
     constructor()
 
-    constructor(activityDashboardBinding: ActivityDashboardBinding) {
+    constructor(
+        activityDashboardBinding: ActivityDashboardBinding,
+    ) {
         this.activityDashboardBinding = activityDashboardBinding
     }
 
-    constructor(hotelModel: HotelModel, activityDashboardBinding: ActivityDashboardBinding) {
-        this.hotelModel = hotelModel
+    constructor(
+        instituteModel: InstituteModel,
+        activityDashboardBinding: ActivityDashboardBinding,
+    ) {
+        this.instituteModel = instituteModel
         this.activityDashboardBinding = activityDashboardBinding
     }
 
@@ -71,24 +79,20 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
         savedInstanceState: Bundle?,
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        hotelAddHotelBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_add_hotel, container, false)
+        hotelAddInstituteBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_add_institute, container, false)
+        hotelAddInstituteBinding.toolbar.img_back.setOnClickListener(this)
+        hotelAddInstituteBinding.saveDetailsTv.setOnClickListener(this)
+        hotelAddInstituteBinding.collageImageLay.setOnClickListener(this)
 
-        hotelAddHotelBinding.saveDetailsTv.setOnClickListener(this)
-        hotelAddHotelBinding.wineBeerSwitch.setOnClickListener(this)
-        hotelAddHotelBinding.hotelImageLay.setOnClickListener(this)
-        hotelAddHotelBinding.bookNowSwitch.setOnClickListener(this)
-        hotelAddHotelBinding.toolbar.img_back.setOnClickListener(this)
-
-        return hotelAddHotelBinding.root
+        return hotelAddInstituteBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityDashboardBinding!!.appBarHome.toolbar.visibility = View.GONE
         updateUi()
-        if (hotelModel == null) {
-            hotelModel = HotelModel()
+        if (instituteModel == null) {
+            instituteModel = InstituteModel()
         }
     }
 
@@ -98,75 +102,67 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
     }
 
     private fun updateUi() {
-        if (hotelModel != null) {
-            if (!Utility.isNullOrEmpty(hotelModel?.BUSINESS_NAME)) {
-                hotelAddHotelBinding.hotelNameEt.setText(hotelModel?.BUSINESS_NAME)
+        if (instituteModel != null) {
+            if (!Utility.isNullOrEmpty(instituteModel?.COLLEGE_NAME)) {
+                hotelAddInstituteBinding.collageNameEt.setText(instituteModel?.COLLEGE_NAME)
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.MOBILE_NO)) {
-                hotelAddHotelBinding.mobileNoEt.setText(hotelModel?.MOBILE_NO)
+            if (!Utility.isNullOrEmpty(instituteModel?.MOBILE_NO)) {
+                hotelAddInstituteBinding.mobileNoEt.setText(instituteModel?.MOBILE_NO)
             }
 
-            hotelAddHotelBinding.roomEt.setText(hotelModel?.ROOMS.toString())
-            hotelAddHotelBinding.staffEt.setText(hotelModel?.STAFF.toString())
-
-            if (!Utility.isNullOrEmpty(hotelModel?.RATE)) {
-                hotelAddHotelBinding.ratingEt.setText(hotelModel?.RATE.toString())
+            if (!Utility.isNullOrEmpty(instituteModel?.COURSE)) {
+                hotelAddInstituteBinding.courseEt.setText(instituteModel?.COURSE)
             }
 
-            hotelAddHotelBinding.tableEt.setText(hotelModel?.DINE_TABLE.toString())
-            hotelAddHotelBinding.priceEt.setText(hotelModel?.PRICE.toString())
-
-
-
-            if (!Utility.isNullOrEmpty(hotelModel?.BOOK_NOW)) {
-                hotelAddHotelBinding.bookNowSwitch.isChecked = true
-                hotelAddHotelBinding.bookNowSwitch.trackTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                hotelAddHotelBinding.bookNowSwitch.thumbTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-            } else {
-                hotelAddHotelBinding.bookNowSwitch.isChecked = false
-                hotelAddHotelBinding.bookNowSwitch.trackTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                hotelAddHotelBinding.bookNowSwitch.thumbTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+            if (!Utility.isNullOrEmpty(instituteModel?.BRANCH)) {
+                hotelAddInstituteBinding.branchEt.setText(instituteModel?.BRANCH.toString())
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.WINE_BEER_AVAILABLE)) {
-                hotelAddHotelBinding.wineBeerSwitch.isChecked = true
-                hotelAddHotelBinding.wineBeerSwitch.trackTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-            } else {
-                hotelAddHotelBinding.wineBeerSwitch.isChecked = false
-                hotelAddHotelBinding.wineBeerSwitch.trackTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
-                    ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
+            if (!Utility.isNullOrEmpty(instituteModel?.SUBJECT)) {
+                hotelAddInstituteBinding.subjectEt.setText(instituteModel?.SUBJECT.toString())
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.ADDRESS)) {
-                hotelAddHotelBinding.addressEt.setText(hotelModel?.ADDRESS)
+
+            hotelAddInstituteBinding.collageFeeEt.setText(instituteModel?.TUITION_FEES.toString())
+
+            if (!Utility.isNullOrEmpty(instituteModel?.QUERY_FROM)) {
+                hotelAddInstituteBinding.queryFormEt.setText(instituteModel?.QUERY_FROM.toString())
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.FEEDBACK)) {
-                hotelAddHotelBinding.feedbackEt.setText(hotelModel?.FEEDBACK)
+            if (!Utility.isNullOrEmpty(instituteModel?.FEEDBACK)) {
+                hotelAddInstituteBinding.feedbackEt.setText(instituteModel?.FEEDBACK.toString())
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.IMAGE_PATH)){
-                imgPath = hotelModel?.IMAGE_PATH
-                hotelAddHotelBinding.hotelIv.visibility = View.VISIBLE
-                hotelAddHotelBinding.hotelIv.setImageBitmap(
+            if (!Utility.isNullOrEmpty(instituteModel?.IMAGE_PATH)){
+                imgPath = instituteModel?.IMAGE_PATH
+                hotelAddInstituteBinding.collageImg.visibility = View.VISIBLE
+                hotelAddInstituteBinding.collageImg.setImageBitmap(
                     Utility.getBitmapByStringImage(
-                        hotelModel?.IMAGE_PATH
+                        instituteModel?.IMAGE_PATH
                     )
                 )
             }
 
-            if (!Utility.isNullOrEmpty(hotelModel?.HOTEL_ID)){
-                hotelIdStr = hotelModel?.HOTEL_ID
+            if (!Utility.isNullOrEmpty(instituteModel?.COLLEGE_ID)){
+                instituteIdStr = instituteModel?.COLLEGE_ID
+            }
+
+
+            val feeTypeList = mActivity.resources.getStringArray(R.array.feeType)
+            val arrayAdapter = ArrayAdapter(mActivity, R.layout.layout_text,feeTypeList)
+            arrayAdapter.setDropDownViewResource(R.layout.layout_text)
+            hotelAddInstituteBinding.spinnerFeeType.adapter = arrayAdapter
+            hotelAddInstituteBinding.spinnerFeeType.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>,
+                                            view: View, position: Int, id: Long) {
+                    feeTypeStr = feeTypeList[position]
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
             }
         }
     }
@@ -174,64 +170,59 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.saveDetailsTv -> {
-                hotelNameStr = hotelAddHotelBinding.hotelNameEt.text.toString().trim()
-                mobileNoStr = hotelAddHotelBinding.mobileNoEt.text.toString().trim()
-                priceStr = hotelAddHotelBinding.priceEt.text.toString().trim()
-                roomStr = hotelAddHotelBinding.roomEt.text.toString().trim()
-                staffStr = hotelAddHotelBinding.staffEt.text.toString().trim()
-                ratingStr = hotelAddHotelBinding.ratingEt.text.toString().trim()
-                tableStr = hotelAddHotelBinding.tableEt.text.toString().trim()
-                addressStr = hotelAddHotelBinding.addressEt.text.toString().trim()
-                feedbackStr = hotelAddHotelBinding.feedbackEt.text.toString().trim()
+                instituteNameStr = hotelAddInstituteBinding.collageNameEt.text.toString().trim()
+                mobileNoStr = hotelAddInstituteBinding.mobileNoEt.text.toString().trim()
 
+                collageFeeStr = hotelAddInstituteBinding.collageFeeEt.text.toString().trim()
+                courseStr = hotelAddInstituteBinding.courseEt.text.toString().trim()
+                branchStr = hotelAddInstituteBinding.branchEt.text.toString().trim()
+                subjectStr = hotelAddInstituteBinding.subjectEt.text.toString().trim()
+                queryFormStr = hotelAddInstituteBinding.queryFormEt.text.toString().trim()
+                feedbackStr = hotelAddInstituteBinding.feedbackEt.text.toString().trim()
 
-                hotelModel?.MOBILE_NO = mobileNoStr
-                hotelModel?.HOTEL_ID = hotelIdStr
-                hotelModel?.PRICE = priceStr
-                hotelModel?.RATE = ratingStr
-                hotelModel?.ADDRESS = addressStr
-                hotelModel?.FEEDBACK = feedbackStr
-                hotelModel?.BUSINESS_NAME = hotelNameStr
-                hotelModel?.IMAGE_PATH = imgPath
-
-
-                if (!Utility.isNullOrEmpty(roomStr)) {
-                    hotelModel?.ROOMS = roomStr.toInt()
+                instituteModel?.COLLEGE_NAME = instituteNameStr
+                instituteModel?.MOBILE_NO = mobileNoStr
+                instituteModel?.COLLEGE_ID = instituteIdStr
+                instituteModel?.COURSE = courseStr
+                if (!Utility.isNullOrEmpty(collageFeeStr)) {
+                    instituteModel?.TUITION_FEES = collageFeeStr!!.toDouble()
                 }
-                if (!Utility.isNullOrEmpty(staffStr)) {
-                    hotelModel?.STAFF = staffStr.toInt()
+                if (Utility.isNullOrEmpty(instituteModel?.COLLEGE_ID)){
+                    instituteIdStr = Utility.getCollageId("1")
+                }else{
+                    instituteIdStr = instituteModel?.COLLEGE_ID
                 }
-                if (Utility.isNullOrEmpty(hotelModel?.HOTEL_ID)){
-                    hotelIdStr = Utility.getHotelId("1")
-                }
-                if (!Utility.isNullOrEmpty(tableStr)) {
-                    hotelModel?.DINE_TABLE = tableStr.toInt()
-                }
+                instituteModel?.BRANCH = branchStr
+                instituteModel?.SUBJECT = subjectStr
+                instituteModel?.QUERY_FROM = queryFormStr
+                instituteModel?.FEEDBACK = feedbackStr
+                instituteModel?.FEETYPE = feeTypeStr
+                instituteModel?.IMAGE_PATH = imgPath
 
-
-                if (Utility.isNullOrEmpty(hotelNameStr)){
-                    Utility.snackBar(view,"Please Enter Hotel Name",2000, mActivity.resources.getColor(R.color.warning,mActivity.theme))
+                if (Utility.isNullOrEmpty(instituteNameStr)){
+                    Utility.snackBar(view,"Please Enter Collage Name",2000, mActivity.resources.getColor(R.color.warning,mActivity.theme))
                 }else if (Utility.isNullOrEmpty(imgPath)){
                     Utility.snackBar(view,"Please Add Hotel Image",2000, mActivity.resources.getColor(R.color.warning,mActivity.theme))
                 }else{
-                    var isSaved: Boolean = HotelDataHelper.saveHotelData(hotelModel!!, mActivity)
+                    var isSaved: Boolean =
+                        InstituteDataHelper.saveCollageData(instituteModel!!, mActivity)
                     if (isSaved) {
                         Utility.snackBar(view,
                             "Data Saved Successfully",
                             2000,
                             mActivity.resources.getColor(R.color.color_green))
 
-                        Utility.replaceFragment(HotelFragment(
-                            activityDashboardBinding!!),
+
+                        Utility.replaceFragment(InstituteFragment(
+                            activityDashboardBinding),
                             mActivity.supportFragmentManager,
                             R.id.layout_fragment)
                     }
                 }
 
-
             }
 
-            R.id.hotelImageLay -> {
+            R.id.collageImageLay -> {
                 val onOptionCLickListener: GalleryBottomSheet.OnOptionCLickListener =
                     object : GalleryBottomSheet.OnOptionCLickListener {
                         override fun onManageClick(optionId: Int) {
@@ -256,34 +247,6 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                 )
             }
 
-            R.id.wineBeerSwitch -> {
-                if (hotelAddHotelBinding.wineBeerSwitch.isChecked) {
-                    hotelAddHotelBinding.wineBeerSwitch.trackTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                    hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                } else {
-                    hotelAddHotelBinding.wineBeerSwitch.trackTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                    hotelAddHotelBinding.wineBeerSwitch.thumbTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                }
-            }
-
-            R.id.bookNowSwitch -> {
-                if (hotelAddHotelBinding.bookNowSwitch.isChecked) {
-                    hotelAddHotelBinding.bookNowSwitch.trackTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                    hotelAddHotelBinding.bookNowSwitch.thumbTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))
-                } else {
-                    hotelAddHotelBinding.bookNowSwitch.trackTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                    hotelAddHotelBinding.bookNowSwitch.thumbTintList =
-                        ColorStateList.valueOf(mActivity.resources.getColor(R.color.color_747474))
-                }
-            }
-
             R.id.img_back -> {
                 mActivity.onBackPressed()
             }
@@ -292,7 +255,7 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(
-                mActivity!!,
+                mActivity,
                 android.Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
 
@@ -392,9 +355,9 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                     try {
                         val file: File = File(imgPath)
                         if (file.exists()) {
-                            HotelImageAsync(
+                            InstituteImageAsync(
                                 file,
-                                hotelModel!!,
+                                instituteModel!!,
                                 object : PhotoCompressedListener {
                                     override fun compressedPhoto(path: String?) {
                                         if (path != null) {
@@ -406,9 +369,9 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                                                 ))
 
 
-                                            hotelAddHotelBinding.hotelIv.visibility =
+                                            hotelAddInstituteBinding.collageImg.visibility =
                                                 View.VISIBLE
-                                            hotelAddHotelBinding.hotelIv.setImageBitmap(
+                                            hotelAddInstituteBinding.collageImg.setImageBitmap(
                                                 Utility.getBitmapByStringImage(
                                                     imgPath
                                                 )
@@ -428,13 +391,13 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                 try {
                     val file: File = File(imgPath)
                     if (file.exists()) {
-                        HotelImageAsync(
+                        InstituteImageAsync(
                             file,
-                            hotelModel!!,
+                            instituteModel!!,
                             object : PhotoCompressedListener {
                                 override fun compressedPhoto(path: String?) {
-                                    if (hotelModel != null) {
-                                        if (!Utility.isNullOrEmpty(path)) {
+                                    if (instituteModel != null) {
+                                        if (path != null) {
 
                                             val rotation = Utility.getRotation(path)
                                             imgPath = Utility.bitmapToBASE64(
@@ -442,9 +405,10 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                                                     Utility.getBitmap(path)!!, rotation.toFloat()
                                                 ))
 
-                                            hotelAddHotelBinding.hotelIv.visibility =
+
+                                            hotelAddInstituteBinding.collageImg.visibility =
                                                 View.VISIBLE
-                                            hotelAddHotelBinding.hotelIv.setImageBitmap(
+                                            hotelAddInstituteBinding.collageImg.setImageBitmap(
                                                 Utility.getBitmapByStringImage(
                                                     imgPath
                                                 )
@@ -465,14 +429,15 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
     override fun imageCallback(file: File) {
         try {
             //  Utility.playBeep(mActivity, null);
-            if (file.exists() && hotelModel != null) {
-                HotelImageAsync(
+            if (file.exists() && instituteModel != null) {
+                InstituteImageAsync(
                     file,
-                    hotelModel!!,
+                    instituteModel!!,
                     object : PhotoCompressedListener {
                         override fun compressedPhoto(path: String?) {
-                            if (hotelModel != null) {
+                            if (instituteModel != null) {
                                 if (path != null) {
+
 
                                     val rotation = Utility.getRotation(path)
                                     imgPath = Utility.bitmapToBASE64(
@@ -481,9 +446,9 @@ class HotelAddEditFragment : Fragment, View.OnClickListener, ImageCallbackListen
                                         ))
 
 
-                                    hotelAddHotelBinding.hotelIv.visibility =
+                                    hotelAddInstituteBinding.collageImg.visibility =
                                         View.VISIBLE
-                                    hotelAddHotelBinding.hotelIv.setImageBitmap(
+                                    hotelAddInstituteBinding.collageImg.setImageBitmap(
                                         Utility.getBitmapByStringImage(
                                             imgPath
                                         )

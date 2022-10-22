@@ -43,13 +43,15 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/dot_bg_image" />
 
-                    <ImageView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="-20dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_ugo_icon" />
+                        android:text="@string/app_name"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_35sp"
+                        android:fontFamily="@font/robo_medium" />
 
                     <View
                         android:layout_width="@dimen/activity_margin_40dp"
@@ -102,7 +104,7 @@
                             android:focusableInTouchMode="true"
                             android:hint="Enter User Name"
                             android:imeOptions="actionNext"
-                            android:inputType="textCapCharacters"
+                            android:inputType="textCapWords"
                             android:maxLength="20"
                             android:maxLines="1"
                             android:textColor="@color/color_0F2C52"

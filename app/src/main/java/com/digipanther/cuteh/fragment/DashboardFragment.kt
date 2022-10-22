@@ -15,11 +15,16 @@ import com.digipanther.cuteh.R
 import com.digipanther.cuteh.activity.DashboardActivity
 import com.digipanther.cuteh.adapter.HotelAdapter
 import com.digipanther.cuteh.adapter.InstituteAdapter
+import com.digipanther.cuteh.common.Utility
 import com.digipanther.cuteh.databinding.ActivityDashboardBinding
 import com.digipanther.cuteh.databinding.AppBarHomeBinding
 import com.digipanther.cuteh.databinding.FragmentDashboardBinding
 import com.digipanther.cuteh.dbHelper.HotelDataHelper
+import com.digipanther.cuteh.dbHelper.InstituteDataHelper
+import com.digipanther.cuteh.dbHelper.UserDataHelper
 import com.digipanther.cuteh.model.HotelModel
+import com.digipanther.cuteh.model.InstituteModel
+import com.digipanther.cuteh.model.UserInfoModel
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 
 class DashboardFragment : Fragment {
@@ -53,6 +58,21 @@ class DashboardFragment : Fragment {
             toolbar!!.subtitle = ""
         }
 
+
+        val infoModel : UserInfoModel? = UserDataHelper.getLogin(mActivity)
+        if (infoModel != null){
+            if (!Utility.isNullOrEmpty(infoModel.userName)){
+                if (infoModel.userName?.contains(" ") == true){
+                    val nameparts = infoModel.userName!!.split(" ")
+                    dashboardFragmentBinding.nameTv.text = "${nameparts[0].first().uppercase()}${nameparts[1].first().uppercase()}"
+                }else{
+                    dashboardFragmentBinding.nameTv.text = "${infoModel.userName?.first()}"
+                }
+                dashboardFragmentBinding.userNameTv.text = infoModel.userName
+                dashboardFragmentBinding.mobileNoTv.text = infoModel.mobile
+            }
+        }
+
         hotelAdapterInit()
         instituteAdapterInit()
 
@@ -78,9 +98,21 @@ class DashboardFragment : Fragment {
     }
 
     private fun instituteAdapterInit(){
-        instituteAdapter = InstituteAdapter(mActivity)
-        dashboardFragmentBinding.instituteRv.layoutManager = LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL,false)
-        dashboardFragmentBinding.instituteRv.adapter = instituteAdapter
+
+        var instituteList: ArrayList<InstituteModel>? = InstituteDataHelper.getAll(mActivity)
+        if (instituteList != null && instituteList.size > 0) {
+            instituteAdapter = InstituteAdapter(instituteList, mActivity,mActivity.supportFragmentManager,activityDashboardBinding)
+            dashboardFragmentBinding.instituteRv.layoutManager =
+                LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false)
+            dashboardFragmentBinding.instituteRv.adapter = instituteAdapter
+            dashboardFragmentBinding.noInstitute.visibility = View.GONE
+            dashboardFragmentBinding.instituteRv.visibility = View.VISIBLE
+            dashboardFragmentBinding.viewAllInstitute.visibility = View.VISIBLE
+        }else{
+            dashboardFragmentBinding.noInstitute.visibility = View.VISIBLE
+            dashboardFragmentBinding.instituteRv.visibility = View.GONE
+            dashboardFragmentBinding.viewAllInstitute.visibility = View.GONE
+        }
     }
 
     override fun onAttach(context: Context) {

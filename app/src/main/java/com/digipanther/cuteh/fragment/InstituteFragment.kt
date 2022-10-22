@@ -11,20 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.digipanther.cuteh.R
-import com.digipanther.cuteh.adapter.HotelAdapter
+import com.digipanther.cuteh.adapter.InstituteAdapter
 import com.digipanther.cuteh.common.Utility
 import com.digipanther.cuteh.databinding.ActivityDashboardBinding
-import com.digipanther.cuteh.databinding.FragmentHotelBinding
-import com.digipanther.cuteh.dbHelper.HotelDataHelper
-import com.digipanther.cuteh.model.HotelModel
+import com.digipanther.cuteh.databinding.FragmentInstituteBinding
+import com.digipanther.cuteh.dbHelper.InstituteDataHelper
+import com.digipanther.cuteh.model.InstituteModel
 import kotlinx.android.synthetic.main.layout_toolbar_white_bg.view.*
 
-class HotelFragment : Fragment,View.OnClickListener{
+class InstituteFragment : Fragment,View.OnClickListener{
 
-    private lateinit var hotelBinding: FragmentHotelBinding
+    private lateinit var instituteBinding: FragmentInstituteBinding
     private lateinit var dashboardBinding: ActivityDashboardBinding
     private var mActivity = FragmentActivity()
-    private lateinit var hotelAdapter : HotelAdapter
+    private lateinit var instituteAdapter : InstituteAdapter
 
     constructor() : super()
 
@@ -38,33 +38,33 @@ class HotelFragment : Fragment,View.OnClickListener{
         savedInstanceState: Bundle?,
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        hotelBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_hotel, container, false)
+        instituteBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_institute, container, false)
 
-        return hotelBinding.root
+        return instituteBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dashboardBinding.appBarHome.toolbar.visibility = View.GONE
-        hotelBinding.whiteToolbar.img_back.setOnClickListener(this)
-        hotelBinding.cardAddHotel.setOnClickListener(this)
-        showHotelList()
+        instituteBinding.whiteToolbar.img_back.setOnClickListener(this)
+        instituteBinding.cardAddInstitute.setOnClickListener(this)
+        showInstituteList()
     }
 
-    private fun showHotelList() {
-        var hotelList: ArrayList<HotelModel>? = HotelDataHelper.getAll(mActivity)
+    private fun showInstituteList() {
+        var instituteList: ArrayList<InstituteModel>? = InstituteDataHelper.getAll(mActivity)
 
-        if (hotelList != null && hotelList.size > 0) {
-            hotelBinding.hotelRv.visibility = View.VISIBLE
-            hotelBinding.llNoData.visibility = View.GONE
+        if (instituteList != null && instituteList.size > 0) {
+            instituteBinding.hotelRv.visibility = View.VISIBLE
+            instituteBinding.llNoData.visibility = View.GONE
 
-            hotelAdapter = HotelAdapter(hotelList,mActivity,mActivity.supportFragmentManager,dashboardBinding)
-            hotelBinding.hotelRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
-            hotelBinding.hotelRv.adapter = hotelAdapter
+            instituteAdapter = InstituteAdapter(instituteList,mActivity,mActivity.supportFragmentManager,dashboardBinding)
+            instituteBinding.hotelRv.layoutManager = LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL,false)
+            instituteBinding.hotelRv.adapter = instituteAdapter
 
         } else {
-            hotelBinding.hotelRv.visibility = View.GONE
-            hotelBinding.llNoData.visibility = View.VISIBLE
+            instituteBinding.hotelRv.visibility = View.GONE
+            instituteBinding.llNoData.visibility = View.VISIBLE
         }
     }
 
@@ -75,8 +75,8 @@ class HotelFragment : Fragment,View.OnClickListener{
 
     override fun onClick(p0: View?) {
         when (p0?.id){
-            R.id.cardAddHotel -> {
-                Utility.replaceFragment(HotelAddEditFragment(dashboardBinding),mActivity.supportFragmentManager,R.id.layout_fragment)
+            R.id.cardAddInstitute -> {
+                Utility.replaceFragment(InstituteAddEditFragment(dashboardBinding),mActivity.supportFragmentManager,R.id.layout_fragment)
             }
 
             R.id.img_back -> {

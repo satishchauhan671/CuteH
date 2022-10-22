@@ -48,6 +48,7 @@ class DatabaseHelper private constructor(context: Context) :
         const val BRANCH = "BRANCH"
         const val SUBJECT = "SUBJECT"
         const val QUERY_FROM = "QUERY_FROM"
+        const val FEETYPE = "FEETYPE"
 
         //user tables fields
         const val USER_ID = "USER_ID"
@@ -94,6 +95,7 @@ class DatabaseHelper private constructor(context: Context) :
         val TABLE_INSTITUTE_MST = "CREATE TABLE " + INSTITUTE_MST + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLLEGE_ID + " TEXT," +
+                COLLEGE_NAME + " TEXT," +
                 COURSE_FEES + " INTEGER," +
                 MOBILE_NO + " INTEGER," +
                 COURSE + " TEXT," +
@@ -103,7 +105,8 @@ class DatabaseHelper private constructor(context: Context) :
                 QUERY_FROM + " QUERY_FROM," +
                 FEEDBACK + " FEEDBACK," +
                 LATITUDE + " LATITUDE," +
-                LONGITUDE + " LONGITUDE" +
+                LONGITUDE + " LONGITUDE," +
+                FEETYPE + " FEETYPE" +
                 ");"
 
         val TABLE_USER_MST = "CREATE TABLE " + USER_MST + "(" +

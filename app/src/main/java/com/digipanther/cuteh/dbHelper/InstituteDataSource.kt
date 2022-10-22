@@ -52,6 +52,7 @@ class InstituteDataSource private constructor() {
                 values.put(DatabaseHelper.QUERY_FROM, instituteModel.QUERY_FROM)
                 values.put(DatabaseHelper.SUBJECT, instituteModel.SUBJECT)
                 values.put(DatabaseHelper.COURSE_FEES, instituteModel.TUITION_FEES)
+                values.put(DatabaseHelper.FEETYPE, instituteModel.FEETYPE)
 
 
                 if (instituteModel.COLLEGE_ID != null) {
@@ -136,6 +137,7 @@ class InstituteDataSource private constructor() {
             DatabaseHelper.QUERY_FROM,
             DatabaseHelper.SUBJECT,
             DatabaseHelper.COURSE_FEES,
+            DatabaseHelper.FEETYPE,
         )
 
 
@@ -155,6 +157,7 @@ class InstituteDataSource private constructor() {
         instituteModel.QUERY_FROM = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.QUERY_FROM))
         instituteModel.SUBJECT = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.SUBJECT))
         instituteModel.TUITION_FEES = cursor.getDouble(cursor.getColumnIndexOrThrow(DatabaseHelper.COURSE_FEES))
+        instituteModel.FEETYPE = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.FEETYPE))
         return instituteModel
     }
 

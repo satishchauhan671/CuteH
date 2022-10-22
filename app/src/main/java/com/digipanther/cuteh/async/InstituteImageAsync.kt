@@ -14,30 +14,32 @@ import com.digipanther.cuteh.common.Utility.rotateImage
 import com.digipanther.cuteh.common.Utility.setPic
 import com.digipanther.cuteh.dbHelper.DatabaseHelper.Companion.IMAGE_PATH
 import com.digipanther.cuteh.dbHelper.HotelDataHelper
+import com.digipanther.cuteh.dbHelper.InstituteDataHelper
 import com.digipanther.cuteh.listener.PhotoCompressedListener
 import com.digipanther.cuteh.model.HotelModel
+import com.digipanther.cuteh.model.InstituteModel
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.lang.ref.WeakReference
 
-class ImageAsync : AsyncTask<Void?, Void?, String?> {
+class InstituteImageAsync : AsyncTask<Void?, Void?, String?> {
     private var maxHeight = 500
     private var maxWidth = 500
     private var path: String?
     private val context: WeakReference<Context>? = null
     private var photoCompressedListener: PhotoCompressedListener?
-    private var hotelModel: HotelModel
+    private var instituteModel: InstituteModel
     private var photoPath: File
 
     constructor(
         photoPath: File,
-        hotelModel: HotelModel,
+        instituteModel: InstituteModel,
         photoCompressedListener: PhotoCompressedListener?
     ) {
         path = photoPath.absolutePath
         this.photoPath = photoPath
-        this.hotelModel = hotelModel
+        this.instituteModel = instituteModel
         this.photoCompressedListener = photoCompressedListener
     }
 
@@ -51,7 +53,7 @@ class ImageAsync : AsyncTask<Void?, Void?, String?> {
             val myDir: File = MyApplication.mInstance!!.applicationContext.filesDir
             val externalDirectory: File? =
                 MyApplication.mInstance!!.applicationContext.getExternalFilesDir(path)
-            val documentsFolder = File(myDir, "UGO CI")
+            val documentsFolder = File(myDir, "CuteH")
             if (!documentsFolder.exists()) {
                 documentsFolder.mkdirs()
             }
@@ -67,14 +69,27 @@ class ImageAsync : AsyncTask<Void?, Void?, String?> {
             }
             val numFiles: File = File(
                 MyApplication.mInstance!!.applicationContext.filesDir.absolutePath
-                    .toString() + "/UGO CI" + "/" + externalDirectory?.name
+                    .toString() + "/CuteH" + "/" + externalDirectory?.name
             )
             path = numFiles.path
             photoPath = numFiles
 
 
+            val rotation = getRotation(path)
+            if (photoPath.length() / 1024 > 200) {
+                while (photoPath.length() / 1024 > 200) {
+                    setPic(path, maxHeight, maxWidth)
+                    maxHeight = maxHeight - 100
+                    maxWidth = maxWidth - 100
+                }
+            }
+            instituteModel.IMAGE_PATH = bitmapToBASE64(
+                rotateImage(
+                    getBitmap(path)!!, rotation.toFloat()
+                )
+            )
 
-                if (photoPath.length() / 1024 > 20) {
+                /*if (photoPath.length() / 1024 > 20) {
                     while (photoPath.length() / 1024 > 20) {
                         setPic(path, maxHeight, maxWidth)
                         maxHeight = maxHeight - 100
@@ -83,10 +98,10 @@ class ImageAsync : AsyncTask<Void?, Void?, String?> {
 
 
 
-                    hotelModel.LATITUDE = getStringPreference("latitude")
-                    hotelModel.LONGITUDE = getStringPreference("longitude")
-//                    hotelModel.VISITED_DATE =
-//                        dateStringWithTime(Date(System.currentTimeMillis()))
+                   instituteModel.LATITUDE = getStringPreference("latitude")
+                    instituteModel.LONGITUDE = getStringPreference("longitude")
+                    hotelModel.VISITED_DATE =
+                        dateStringWithTime(Date(System.currentTimeMillis()))
 
             } else {
                 val rotation = getRotation(path)
@@ -97,16 +112,15 @@ class ImageAsync : AsyncTask<Void?, Void?, String?> {
                         maxWidth = maxWidth - 100
                     }
                 }
-                hotelModel.IMAGE_PATH = bitmapToBASE64(
+                    instituteModel.IMAGE_PATH = bitmapToBASE64(
                     rotateImage(
                         getBitmap(path)!!, rotation.toFloat()
                     )
                 )
-            }
-            HotelDataHelper.saveHotelData(hotelModel, MyApplication.mInstance!!)
+            }*/
             try {
-                deleteImages(MyApplication.mInstance!!!!)
-                deleteSignature(MyApplication.mInstance!!!!)
+                deleteImages(MyApplication.mInstance!!)
+                deleteSignature(MyApplication.mInstance!!)
             } catch (e: Exception) {
                 e.message
             }

@@ -90,6 +90,14 @@ class HotelDetailsFragment : Fragment, View.OnClickListener {
             hotelDetailsBinding.bookNowSwitch.isEnabled = false
             hotelDetailsBinding.wineBeerSwitch.isEnabled = false
 
+            if (!Utility.isNullOrEmpty(hotelModel.IMAGE_PATH)){
+                hotelDetailsBinding.hotelIv.setImageBitmap(
+                    Utility.getBitmapByStringImage(
+                        hotelModel.IMAGE_PATH
+                    )
+                )
+            }
+
             if (!Utility.isNullOrEmpty(hotelModel.BOOK_NOW)){
                 hotelDetailsBinding.bookNowSwitch.isChecked = true
                 hotelDetailsBinding.bookNowSwitch.trackTintList = ColorStateList.valueOf(mActivity.resources.getColor(R.color.colorPrimary))

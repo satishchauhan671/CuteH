@@ -7,7 +7,7 @@ class HotelModel() {
     var BUSINESS_NAME: String? = null
     var ADDRESS: String? = null
     var MOBILE_NO: String? = null
-    var ROOMS: Double = 0.0
+    var ROOMS: Int = 0
     var IMAGE_PATH: String? = null
     var RATE: String? = null
     var DINE_TABLE: Int = 0

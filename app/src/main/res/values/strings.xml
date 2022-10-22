@@ -25,7 +25,8 @@
     <string name="branch">Branch</string>
     <string name="subject">Subject</string>
     <string name="tution_fee">Tution Fee</string>
-    <string name="collage_details">Add Collage Details</string>
+    <string name="add_collage_details">Add Collage Details</string>
+    <string name="collage_details">Collage Details</string>
     <string name="query_from">Query From</string>
     <string name="collage_img">Collage Building Image</string>
     <string name="hotel_img">Hotel Building Image</string>
@@ -43,6 +44,13 @@
     <string name="you_have_not_add">"You haven't add any hotel"</string>
     <string name="you_can_add">You can add hotel from click on bottom tab hotel</string>
     <string name="edit_details">Edit Details</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="collage_fee">Collage Fee</string>
+
+
+    <string-array name="feeType">
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Yearly</item>
+    </string-array>
+
 </resources>

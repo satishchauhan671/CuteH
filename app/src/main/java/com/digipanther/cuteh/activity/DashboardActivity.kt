@@ -26,6 +26,7 @@ import com.digipanther.cuteh.databinding.ActivityDashboardBinding
 import com.digipanther.cuteh.dbHelper.UserDataHelper
 import com.digipanther.cuteh.fragment.DashboardFragment
 import com.digipanther.cuteh.fragment.HotelFragment
+import com.digipanther.cuteh.fragment.InstituteFragment
 import com.digipanther.cuteh.model.UserInfoModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -126,15 +127,14 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
                 }
 
                 R.id.nav_institute -> {
-                    actionBar!!.title = "Meter Indexing"
-                    actionBar!!.subtitle = ""
-                  /*  fragment = SearchCustomerMIFragment(dashboardBinding)
-                    navigationView.menu.findItem(R.id.navigation_mi).isChecked = true
+                    actionBar!!.title = "Institute"
+                    fragment = InstituteFragment(dashboardBinding)
+                    navigationView.menu.findItem(R.id.navigation_hotel).isChecked = true
                     Utility.replaceFragment(
                         fragment,
                         supportFragmentManager,
                         R.id.layout_fragment
-                    )*/
+                    )
                 }
 
 
@@ -177,16 +177,14 @@ class DashboardActivity : MyActivity(), NavigationView.OnNavigationItemSelectedL
             }
 
             R.id.navigation_institude -> {
-
-                Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT)
-                    .show()
-                /* fragment = SearchCustomerCIFragment(dashboardBinding)
-                 navigationView.menu.findItem(R.id.navigation_ci).isChecked = true
-                 Utility.replaceFragment(
-                     fragment,
-                     supportFragmentManager,
-                     R.id.layout_fragment
-                 )*/
+                actionBar!!.title = "Institute"
+                fragment = InstituteFragment(dashboardBinding)
+                navigationView.menu.findItem(R.id.navigation_hotel).isChecked = true
+                Utility.replaceFragment(
+                    fragment,
+                    supportFragmentManager,
+                    R.id.layout_fragment
+                )
             }
 
             R.id.navigation_hotel -> {
