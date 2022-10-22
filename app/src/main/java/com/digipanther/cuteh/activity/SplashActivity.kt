@@ -7,6 +7,8 @@ import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.digipanther.cuteh.R
+import com.digipanther.cuteh.dbHelper.UserDataHelper
+import com.digipanther.cuteh.model.UserInfoModel
 
 class SplashActivity : MyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +28,8 @@ class SplashActivity : MyActivity() {
     }
 
     private fun accessPage() {
-       // val model: UserInfoModel? = UserDataHelper.getLogin(this@SplashActivity)
-        if ("null" != "") {
+        val userInfoModel = UserDataHelper.getLogin(this@SplashActivity)
+       if (userInfoModel != null) {
             intent = Intent(this@SplashActivity, DashboardActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

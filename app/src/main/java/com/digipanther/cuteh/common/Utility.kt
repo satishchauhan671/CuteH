@@ -2119,5 +2119,10 @@ object Utility {
         return `val`.toString()
     }
 
+    fun showSnackBar(view: View, message: String) {
+        val snackBar =
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        snackBar.show()
+    }
 
 }

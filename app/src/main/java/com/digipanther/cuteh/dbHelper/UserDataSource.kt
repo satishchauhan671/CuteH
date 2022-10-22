@@ -5,8 +5,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.digipanther.cuteh.dbHelper.DatabaseHelper.Companion.ID
 import com.digipanther.cuteh.dbHelper.DatabaseHelper.Companion.MOBILE
+import com.digipanther.cuteh.dbHelper.DatabaseHelper.Companion.USER_NAME
 import com.digipanther.cuteh.dbHelper.DatabaseHelper.Companion.lock
 import com.digipanther.cuteh.model.UserInfoModel
 import java.sql.SQLException
@@ -41,8 +41,8 @@ class UserDataSource private constructor() {
         synchronized(lock) {
             try {
                 val values = ContentValues()
-                values.put(DatabaseHelper.USER_NAME, userModel.userName)
-                values.put(DatabaseHelper.MOBILE, userModel.mobile)
+                values.put(USER_NAME, userModel.userName)
+                values.put(MOBILE, userModel.mobile)
 
                 if (userModel.mobile != null) {
                     val userModel1 = getByUserNo(userModel.mobile!!, context)
@@ -91,7 +91,7 @@ class UserDataSource private constructor() {
                 val cursor = db.query(
                     DatabaseHelper.USER_MST,
                     queryData,
-                    DatabaseHelper.MOBILE + "=?",
+                    MOBILE + "=?",
                     arrayOf(mobileNo),
                     null,
                     null,
@@ -114,7 +114,7 @@ class UserDataSource private constructor() {
     private val queryData: Array<String>
         get() = arrayOf(
             DatabaseHelper.USER_NAME,
-            DatabaseHelper.MOBILE,
+            MOBILE,
             DatabaseHelper.PHOTO,
         )
 
@@ -123,7 +123,7 @@ class UserDataSource private constructor() {
     private fun cursorData(cursor: Cursor): UserInfoModel {
         val userModel = UserInfoModel()
         userModel.userName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.USER_NAME))
-        userModel.mobile = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.MOBILE))
+        userModel.mobile = cursor.getString(cursor.getColumnIndexOrThrow(MOBILE))
         userModel.img = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.PHOTO))
         return userModel
     }
@@ -150,7 +150,7 @@ class UserDataSource private constructor() {
             val db = getSQLiteDb(true, context)
             db.delete(
                 DatabaseHelper.USER_MST,
-                DatabaseHelper.MOBILE + "=?",
+                MOBILE + "=?",
                 arrayOf(userModel.mobile)
             )
         }
