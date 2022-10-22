@@ -43,4 +43,6 @@
     <string name="you_have_not_add">"You haven't add any hotel"</string>
     <string name="you_can_add">You can add hotel from click on bottom tab hotel</string>
     <string name="edit_details">Edit Details</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

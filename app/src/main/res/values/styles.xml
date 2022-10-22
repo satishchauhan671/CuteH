@@ -114,4 +114,15 @@
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
 
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/color_E3E9ED</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/darktextcolor</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+
+
 </resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".fragment.LoginFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_login_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/activity_margin_20dp"
+                    android:layout_marginEnd="@dimen/activity_margin_20dp"
+                    android:layout_weight="9"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/dot_bg_image" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="-20dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_ugo_icon" />
+
+                    <View
+                        android:layout_width="@dimen/activity_margin_40dp"
+                        android:layout_height="@dimen/activity_margin_4dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/activity_margin_15dp"
+                        android:background="@drawable/view_line" />
+
+                    <TextView
+                        android:id="@+id/txtLoginToContinue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_margin_15dp"
+                        android:layout_marginBottom="@dimen/activity_margin_20dp"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_margin_5dp"
+                        android:text="Login to Continue"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_margin_15dp"
+                        android:layout_marginEnd="@dimen/activity_margin_15dp"
+                        android:text="User Name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_margin_45dp"
+                        android:layout_marginStart="@dimen/activity_margin_15dp"
+                        android:layout_marginTop="@dimen/activity_margin_8dp"
+                        android:layout_marginEnd="@dimen/activity_margin_15dp"
+                        android:layout_marginBottom="@dimen/activity_margin_12dp"
+                        android:background="@drawable/rounded_gray"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/activity_margin_15dp"
+                        android:paddingEnd="@dimen/activity_margin_15dp">
+
+                        <EditText
+                            android:id="@+id/edtUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:focusableInTouchMode="true"
+                            android:hint="Enter User Name"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:textColor="@color/color_0F2C52"
+                            android:textColorHint="@color/color_c2ccd9"
+                            android:textSize="@dimen/text_size_14sp" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtMobileNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_margin_15dp"
+                        android:layout_marginEnd="@dimen/activity_margin_15dp"
+                        android:text="Mobile No"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_margin_45dp"
+                        android:layout_marginStart="@dimen/activity_margin_15dp"
+                        android:layout_marginTop="@dimen/activity_margin_8dp"
+                        android:layout_marginEnd="@dimen/activity_margin_15dp"
+                        android:layout_marginBottom="@dimen/activity_margin_12dp"
+                        android:background="@drawable/rounded_gray"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/activity_margin_15dp"
+                        android:paddingEnd="@dimen/activity_margin_15dp">
+
+                        <EditText
+                            android:id="@+id/edtMobileNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ellipsize="end"
+                            android:focusableInTouchMode="true"
+                            android:hint="Enter Mobile No"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapCharacters"
+                            android:maxLength="20"
+                            android:maxLines="1"
+                            android:textColor="@color/color_0F2C52"
+                            android:textColorHint="@color/color_c2ccd9"
+                            android:textSize="@dimen/text_size_14sp" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/activity_margin_20dp"
+                        android:background="@drawable/round_corner_btn"
+                        android:drawableEnd="@drawable/ic_arrow_gray"
+                        android:gravity="center"
+                        android:padding="@dimen/activity_margin_16dp"
+                        android:text="Login"
+                        android:textAllCaps="true"
+                        android:textColor="#36516E"
+                        android:textSize="@dimen/text_size_13sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>
