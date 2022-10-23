@@ -32,6 +32,7 @@ import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.util.Base64
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -1773,29 +1774,6 @@ object Utility {
         return `val`
     }
 
-    fun toTitleCase(str: String?): String? {
-        if (isNullOrEmpty(str)) {
-            return null
-        }
-        var space = true
-        val builder = StringBuilder(str)
-        val len = builder.length
-        for (i in 0 until len) {
-            val c = builder[i]
-            if (space) {
-                if (!Character.isWhitespace(c)) {
-                    // Convert to title case and switch out of whitespace mode.
-                    builder.setCharAt(i, Character.toTitleCase(c))
-                    space = false
-                }
-            } else if (Character.isWhitespace(c)) {
-                space = true
-            } else {
-                builder.setCharAt(i, Character.toLowerCase(c))
-            }
-        }
-        return builder.toString()
-    }
 
     /*  public static TreeMap<Integer, String> prepareString(Context context, UserBillModel userBillModel) {
 
@@ -2118,6 +2096,40 @@ object Utility {
         return isValid
     }
 
+    fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    fun isValidMobile(mobile: String): Boolean {
+        val check: Boolean
+        val mobileRegex = "[6-9][0-9]{9}"
+        check = mobile.matches(mobileRegex.toRegex())
+        return check
+    }
+
+    fun toTitleCase(str: String?): String? {
+        if (isNullOrEmpty(str)) {
+            return null
+        }
+        var space = true
+        val builder = StringBuilder(str)
+        val len = builder.length
+        for (i in 0 until len) {
+            val c = builder[i]
+            if (space) {
+                if (!Character.isWhitespace(c)) {
+                    // Convert to title case and switch out of whitespace mode.
+                    builder.setCharAt(i, Character.toTitleCase(c))
+                    space = false
+                }
+            } else if (Character.isWhitespace(c)) {
+                space = true
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c))
+            }
+        }
+        return builder.toString()
+    }
 
     fun getMonthNameInSmall(monthNum: Int): String { // month name starts from 1 to 12
         var monthname = "Jan"

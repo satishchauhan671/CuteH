@@ -48,23 +48,20 @@ class DashboardFragment : Fragment {
         dashboardFragmentBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_dashboard, container, false)
 
-        if(activityDashboardBinding != null) {
-            activityDashboardBinding!!.appBarHome.contentMain.bottomNavigation.visibility =
-                View.VISIBLE
-            appbarMainBinding = activityDashboardBinding!!.appBarHome
+        activityDashboardBinding.appBarHome.contentMain.bottomNavigation.visibility =
+            View.VISIBLE
+        appbarMainBinding = activityDashboardBinding.appBarHome
 
-            val toolbar = (mActivity as DashboardActivity?)!!.supportActionBar
-            toolbar!!.title = "Dashboard"
-            toolbar!!.subtitle = ""
-        }
+        val toolbar = (mActivity as DashboardActivity?)!!.supportActionBar
+        toolbar!!.title = "Dashboard"
+        toolbar.subtitle = ""
 
 
         val infoModel : UserInfoModel? = UserDataHelper.getLogin(mActivity)
         if (infoModel != null){
             if (!Utility.isNullOrEmpty(infoModel.userName)){
                 if (infoModel.userName?.contains(" ") == true){
-                    val nameparts = infoModel.userName!!.split(" ")
-                    dashboardFragmentBinding.nameTv.text = "${nameparts[0].first().uppercase()}${nameparts[1].first().uppercase()}"
+                    dashboardFragmentBinding.nameTv.text = Utility.toTitleCase(infoModel.userName)
                 }else{
                     dashboardFragmentBinding.nameTv.text = "${infoModel.userName?.first()}"
                 }

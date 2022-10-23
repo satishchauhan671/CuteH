@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentActivity
 import com.digipanther.cuteh.R
 import com.digipanther.cuteh.activity.DashboardActivity
 import com.digipanther.cuteh.activity.LoginActivity
+import com.digipanther.cuteh.common.Utility
 import com.digipanther.cuteh.common.Utility.showSnackBar
 import com.digipanther.cuteh.databinding.FragmentHotelDetailsBinding
 import com.digipanther.cuteh.databinding.FragmentLoginBinding
@@ -46,7 +47,9 @@ class LoginFragment : Fragment() {
                 showSnackBar(binding.root, "Please Enter User Name")
             } else if (TextUtils.isEmpty(binding.edtMobileNo.text)) {
                 showSnackBar(binding.root, "Please Enter Mobile No")
-            } else {
+            } else if (!Utility.isValidMobile(binding.edtMobileNo.text.toString())) {
+                showSnackBar(binding.root, "Please Enter Valid Mobile No")
+            }else {
                 userInfoModel = UserInfoModel();
                 if (userInfoModel != null) {
                     userInfoModel!!.userName = binding.edtUserName.text.toString()
